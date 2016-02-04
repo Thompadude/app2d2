@@ -22,6 +22,9 @@ public class CharacterUrl {
             case "vader":
                 this.characterUrl = "http://swapi.co/api/people/4/";
                 break;
+            case "anakin":
+                this.characterUrl = "http://swapi.co/api/people/11/";
+                break;
             case "r2d2":
                 this.characterUrl = "http://swapi.co/api/people/3/";
                 break;
@@ -33,6 +36,15 @@ public class CharacterUrl {
                 break;
             case "obiwan":
                 this.characterUrl = "http://swapi.co/api/people/10/";
+                break;
+            case "chewbacca":
+                this.characterUrl = "http://swapi.co/api/people/13/";
+                break;
+            case "hansolo":
+                this.characterUrl = "http://swapi.co/api/people/14/";
+                break;
+            case "yoda":
+                this.characterUrl = "http://swapi.co/api/people/20/";
                 break;
 
         }

@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.SyncHttpClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,25 +49,9 @@ public class ProfileActivity extends MainActivity {
         spinnerCharacters.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 1:
-                        setCharacter("luke");
-                        break;
-                    case 2:
-                        setCharacter("vader");
-                        break;
-                    case 3:
-                        setCharacter("r2d2");
-                        break;
-                    case 4:
-                        setCharacter("c3po");
-                        break;
-                    case 5:
-                        setCharacter("leia");
-                        break;
-                    case 6:
-                        setCharacter("obiwan");
-                        break;
+                ProfileMenuSelection profileMenuSelection = new ProfileMenuSelection();
+                if (profileMenuSelection.getCharacterString(position) != null) {
+                    setCharacter(profileMenuSelection.getCharacterString(position));
                 }
             }
 
@@ -171,6 +154,9 @@ public class ProfileActivity extends MainActivity {
             case "Darth Vader":
                 ivProfilePic.setImageResource(R.drawable.icon_vader);
                 break;
+            case "Anakin Skywalker":
+                ivProfilePic.setImageResource(R.drawable.icon_anakin);
+                break;
             case "R2-D2":
                 ivProfilePic.setImageResource(R.drawable.icon_r2d2_2);
                 break;
@@ -182,6 +168,15 @@ public class ProfileActivity extends MainActivity {
                 break;
             case "Obi-Wan Kenobi":
                 ivProfilePic.setImageResource(R.drawable.icon_obiwan);
+                break;
+            case "Chewbacca":
+                ivProfilePic.setImageResource(R.drawable.icon_chewbacca);
+                break;
+            case "Han Solo":
+                ivProfilePic.setImageResource(R.drawable.icon_hansolo);
+                break;
+            case "Yoda":
+                ivProfilePic.setImageResource(R.drawable.icon_yoda);
                 break;
         }
     }

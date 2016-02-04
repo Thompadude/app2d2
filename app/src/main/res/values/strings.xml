@@ -13,12 +13,14 @@
         <item>Select A Character</item>
         <item>Luke Skywalker</item>
         <item>Darth Vader</item>
+        <item>Anakin Skywalker</item>
         <item>R2-D2</item>
         <item>C-3PO</item>
         <item>Leia Organa</item>
         <item>Obi-Wan Kenobi</item>
-        <item></item>
-        <item></item>
+        <item>Chewbacca</item>
+        <item>Han Solo</item>
+        <item>Yoda</item>
     </string-array>
     <string name="content_profile">
         Height: %1$s centimeters\nMass: %2$s kilograms\nHair Color: %3$s\nSkin Color: %4$s\nEye Color: %5$s\nBirth Year: %6$s\nGender: %7$s\nHomeworld: %8$s
