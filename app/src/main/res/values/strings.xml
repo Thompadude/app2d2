@@ -23,6 +23,9 @@
         <item>Yoda</item>
         <item>Palpatine</item>
         <item>Boba Fett</item>
+        <item>Qui-Gon Jinn</item>
+        <item>Padmé Amidala</item>
+        <item>Mace Windu</item>
     </string-array>
     <string name="content_profile">
         Height: %1$s centimeters\nMass: %2$s kilograms\nHair Color: %3$s\nSkin Color: %4$s\nEye Color: %5$s\nBirth Year: %6$s\nGender: %7$s\nHomeworld: %8$s

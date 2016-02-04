@@ -28,6 +28,12 @@ public class CharacterUrlHandler {
                 return "http://swapi.co/api/people/21/";
             case "Boba Fett":
                 return "http://swapi.co/api/people/22/";
+            case "Qui-Gon Jinn":
+                return "http://swapi.co/api/people/32/";
+            case "Padmé Amidala":
+                return "http://swapi.co/api/people/35/";
+            case "Mace Windu":
+                return "http://swapi.co/api/people/51/";
             default:
                 return null;
         }

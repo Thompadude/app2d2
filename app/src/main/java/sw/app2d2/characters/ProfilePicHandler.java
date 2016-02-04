@@ -36,6 +36,12 @@ public class ProfilePicHandler {
                 return R.drawable.icon_palpatine;
             case "Boba Fett":
                 return R.drawable.icon_bobafett;
+            case "Qui-Gon Jinn":
+                return R.drawable.icon_quigon;
+            case "Padmé Amidala":
+                return R.drawable.icon_padme;
+            case "Mace Windu":
+                return R.drawable.icon_mace;
             default:
                 return R.drawable.icon_profilemissing;
         }

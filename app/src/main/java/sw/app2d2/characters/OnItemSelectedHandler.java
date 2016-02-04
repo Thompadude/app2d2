@@ -35,11 +35,11 @@ public class OnItemSelectedHandler {
             case 12:
                 return "Boba Fett";
             case 13:
-                return null;
+                return "Qui-Gon Jinn";
             case 14:
-                return null;
+                return "Padmé Amidala";
             case 15:
-                return null;
+                return "Mace Windu";
             case 16:
                 return null;
             case 17:
