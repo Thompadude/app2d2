@@ -17,7 +17,6 @@ import org.json.JSONObject;
 
 import sw.app2d2.MainActivity;
 import sw.app2d2.R;
-import sw.app2d2.database.Data;
 
 /**
  * Collects information about characters in the Star Wars universe from Swapi, a
@@ -49,9 +48,10 @@ public class ProfileActivity extends MainActivity {
         spinnerCharacters.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ProfileMenuSelection profileMenuSelection = new ProfileMenuSelection();
-                if (profileMenuSelection.getCharacterString(position) != null) {
-                    setCharacter(profileMenuSelection.getCharacterString(position));
+                OnItemSelectedHandler onItemSelectedHandler = new OnItemSelectedHandler();
+                name = onItemSelectedHandler.getStringCharacter(position);
+                if (name != null) {
+                    setCharacter();
                 }
             }
 
@@ -64,20 +64,18 @@ public class ProfileActivity extends MainActivity {
 
     /**
      * Collect the information needed from Swapi and create new character.
-     *
-     * @param characterToDisplay is the string ID to identify what character the user want info about.
      */
-    private void setCharacter(String characterToDisplay) {
-        // Based on the param characterID -- set the currentcharacter Swapi url.
-        Data.getCharacterUrlData().setCharacterUrl(characterToDisplay);
+    private void setCharacter() {
+        CharacterUrlHandler characterUrlHandler = new CharacterUrlHandler();
+        String swapiUrl = characterUrlHandler.getCharacterUrl(name);
 
         AsyncHttpClient getCharacter = new AsyncHttpClient();
-        getCharacter.get(Data.getCharacterUrlData().getCharacterUrl(),
+        getCharacter.get(swapiUrl,
                 new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(JSONObject response) {
+                        getSwapiConnectionSuccessToast();
                         try {
-                            name = response.getString("name");
                             height = response.getString("height");
                             mass = response.getString("mass");
                             hairColor = response.getString("hair_color");
@@ -103,7 +101,7 @@ public class ProfileActivity extends MainActivity {
 
                                         @Override
                                         public void onFailure(Throwable e, JSONObject errorResponse) {
-                                            Toast.makeText(getApplicationContext(), "Connection to SWAPI database failed.", Toast.LENGTH_SHORT).show();
+                                            getSwapiConnectionFailedToast();
                                         }
                                     });
 
@@ -114,6 +112,7 @@ public class ProfileActivity extends MainActivity {
 
                     @Override
                     public void onFailure(Throwable e, JSONObject errorResponse) {
+                        getSwapiConnectionFailedToast();
                     }
                 });
     }
@@ -121,64 +120,43 @@ public class ProfileActivity extends MainActivity {
     /**
      * Displays the information from Swapi in the TextView.
      *
-     * @param character is the character created with the information from Swapi.
+     * @param tempCharacter is the tempCharacter created with the information from Swapi.
      */
-    private void setTvProfileContent(Character character) {
-        tvProfileName.setText(character.getName());
+    private void setTvProfileContent(Character tempCharacter) {
+        tvProfileName.setText(tempCharacter.getName());
+
         tvProfileContent.setText(
                 getString(R.string.content_profile,
-                        character.getHeight(),
-                        character.getMass(),
-                        character.getHairColor(),
-                        character.getSkinColor(),
-                        character.getEyeColor(),
-                        character.getBirthYear(),
-                        character.getGender(),
-                        character.getHomeworld()));
-        setIvProfilePic(character);
+                        tempCharacter.getHeight(),
+                        tempCharacter.getMass(),
+                        tempCharacter.getHairColor(),
+                        tempCharacter.getSkinColor(),
+                        tempCharacter.getEyeColor(),
+                        tempCharacter.getBirthYear(),
+                        tempCharacter.getGender(),
+                        tempCharacter.getHomeworld()));
+
+        setIvProfilePic();
     }
 
     /**
-     * Sets character profile pic depending on character name.
+     * Set character profile pic depending on the character name.
      * Adds an animation effect.
-     *
-     * @param character the character profile picture to display.
      */
-    private void setIvProfilePic(Character character) {
+    private void setIvProfilePic() {
         setFadeDurations(2000);
         ivProfilePic.startAnimation(getFadeInAnimation());
-        switch (character.getName()) {
-            case "Luke Skywalker":
-                ivProfilePic.setImageResource(R.drawable.icon_lukeskywalker);
-                break;
-            case "Darth Vader":
-                ivProfilePic.setImageResource(R.drawable.icon_vader);
-                break;
-            case "Anakin Skywalker":
-                ivProfilePic.setImageResource(R.drawable.icon_anakin);
-                break;
-            case "R2-D2":
-                ivProfilePic.setImageResource(R.drawable.icon_r2d2_2);
-                break;
-            case "C-3PO":
-                ivProfilePic.setImageResource(R.drawable.icon_c3po);
-                break;
-            case "Leia Organa":
-                ivProfilePic.setImageResource(R.drawable.icon_leia);
-                break;
-            case "Obi-Wan Kenobi":
-                ivProfilePic.setImageResource(R.drawable.icon_obiwan);
-                break;
-            case "Chewbacca":
-                ivProfilePic.setImageResource(R.drawable.icon_chewbacca);
-                break;
-            case "Han Solo":
-                ivProfilePic.setImageResource(R.drawable.icon_hansolo);
-                break;
-            case "Yoda":
-                ivProfilePic.setImageResource(R.drawable.icon_yoda);
-                break;
-        }
+
+        ProfilePicHandler profilePicHandler = new ProfilePicHandler();
+        ivProfilePic.setImageResource(profilePicHandler.getCharacterProfilePic(name));
+    }
+
+    private void getSwapiConnectionSuccessToast() {
+        Toast.makeText(getApplicationContext(), "Downloading Profile Info", Toast.LENGTH_SHORT).show();
+    }
+
+    private void getSwapiConnectionFailedToast() {
+        Toast.makeText(getApplicationContext(), "Connection to SWAPI database failed", Toast.LENGTH_SHORT).show();
     }
 
 }

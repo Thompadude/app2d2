@@ -1,6 +1,6 @@
 package sw.app2d2.characters;
 
-public class ProfileMenuSelection {
+public class OnItemSelectedHandler {
 
     /**
      * Handles the choice from the dropdown profile menu.
@@ -8,32 +8,32 @@ public class ProfileMenuSelection {
      * @param profileMenuPos the index from the menu.
      * @return the character string to help identify what character the user want to display.
      */
-    public String getCharacterString(int profileMenuPos) {
+    public String getStringCharacter(int profileMenuPos) {
         switch (profileMenuPos) {
             case 1:
-                return "luke";
+                return "Luke Skywalker";
             case 2:
-                return "vader";
+                return "Darth Vader";
             case 3:
-                return "anakin";
+                return "Anakin Skywalker";
             case 4:
-                return "r2d2";
+                return "R2-D2";
             case 5:
-                return "c3po";
+                return "C-3PO";
             case 6:
-                return "leia";
+                return "Leia Organa";
             case 7:
-                return "obiwan";
+                return "Obi-Wan Kenobi";
             case 8:
-                return "chewbacca";
+                return "Chewbacca";
             case 9:
-                return "hansolo";
+                return "Han Solo";
             case 10:
-                return "yoda";
+                return "Yoda";
             case 11:
-                return null;
+                return "Palpatine";
             case 12:
-                return null;
+                return "Boba Fett";
             case 13:
                 return null;
             case 14:
