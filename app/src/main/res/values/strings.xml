@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">APP2D2</string>
+    <string name="about">Made by Thomas Lansing\nthomas@lansing.nu</string>
+    <string name="action_home">Home</string>
+    <string name="action_about">About</string>
+    <string name="action_forcemeter">Light/Dark Side Meter</string>
+    <string name="action_profiles">Character Profiles</string>
+    <string name="content_forcemeter">Checking which side of the force you are drawn to.</string>
+    <string name="content_forcemeter_dark">You are drawn to the dark side! App set to dark side theme.</string>
+    <string name="content_forcemeter_light">You are drawn to the light side! App set to light side theme.</string>
+    <string name="select_char">Select Character</string>
+    <string-array name="array_characters">
+        <item>Select A Character</item>
+        <item>Luke Skywalker</item>
+        <item>Darth Vader</item>
+        <item>R2-D2</item>
+        <item>C-3PO</item>
+        <item>Leia Organa</item>
+        <item>Obi-Wan Kenobi</item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string name="content_profile">
+        Height: %1$s centimeters\nMass: %2$s kilograms\nHair Color: %3$s\nSkin Color: %4$s\nEye Color: %5$s\nBirth Year: %6$s\nGender: %7$s\nHomeworld: %8$s
+    </string>
+    <string name="luke">Luke Skywalker</string>
+</resources>

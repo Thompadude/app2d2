@@ -1,0 +1,97 @@
+package sw.app2d2.forcemeter;
+
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.os.Handler;
+import android.widget.TextView;
+
+import sw.app2d2.MainActivity;
+import sw.app2d2.database.Data;
+import sw.app2d2.R;
+
+public class ForceMeterActivity extends MainActivity implements SensorEventListener {
+
+    private SensorManager sensorManager;
+    private Sensor theForceSensor;
+    private TextView tvForceFeedback;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.content_lightdarksidemeter);
+
+        // Get access to the light sensor.
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        theForceSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+
+        tvForceFeedback = (TextView) findViewById(R.id.tvForceFeedback);
+        tvForceFeedback.startAnimation(getFadeOutAnimation());
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        // Get the value from the light sensor. Set the client's force value.
+        Data.getForceValueData().setForceValue(event.values[0]);
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sensorManager.registerListener(this, theForceSensor, sensorManager.SENSOR_DELAY_NORMAL);
+
+        // Unregister the sensor after 5 seconds.
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Animate the background color after unregistering the sensor.
+                animateBackground();
+                unregisterListener();
+            }
+        }, 5000);
+    }
+
+    @Override
+    public void setTheme() {
+    }
+
+    /**
+     * Animates the background depending on the client's force value.
+     */
+    public void animateBackground() {
+        setThisView(this.findViewById(android.R.id.content));
+        if (Data.getForceValueData().getForceValue() < 100) {
+            tvForceFeedback.setText(R.string.content_forcemeter_dark);
+            tvForceFeedback.setTextColor(getResources().getColor(R.color.white));
+            getThisView().setBackgroundColor(getResources().getColor(R.color.bg_dark_side));
+            getThisView().startAnimation(getFadeInAnimation());
+        } else {
+            tvForceFeedback.setText(R.string.content_forcemeter_light);
+            tvForceFeedback.setTextColor(getResources().getColor(R.color.black));
+            getThisView().startAnimation(getFadeInAnimation());
+            getThisView().setBackgroundColor(getResources().getColor(R.color.bg_light_side));
+        }
+    }
+
+    /**
+     * Was forced into writing this method -- was getting errors in run() method in onResume()
+     * when trying to unregister with the "normal" method.
+     */
+    private void unregisterListener() {
+        sensorManager.unregisterListener(this);
+    }
+
+}
