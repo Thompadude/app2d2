@@ -21,7 +21,7 @@ public class ForceMeterActivity extends MainActivity implements SensorEventListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_lightdarksidemeter);
+        setContentView(R.layout.activity_forcemeter);
 
         // Get access to the light sensor.
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);

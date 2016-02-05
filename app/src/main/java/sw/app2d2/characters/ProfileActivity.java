@@ -1,6 +1,7 @@
 package sw.app2d2.characters;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,26 +25,21 @@ import sw.app2d2.R;
  */
 public class ProfileActivity extends MainActivity {
 
-    private ArrayAdapter<CharSequence> spinnerCharAdapter;
     private ImageView ivProfilePic;
-    private Spinner spinnerCharacters;
     private String name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld;
-    private TextView tvProfileName, tvProfileContent;
+    private TextView tvProfileContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_profiles);
+        setContentView(R.layout.activity_profiles);
         setTheme();
 
         ivProfilePic = (ImageView) findViewById(R.id.ivProfilePic);
-        tvProfileName = (TextView) findViewById(R.id.tvProfileName);
         tvProfileContent = (TextView) findViewById(R.id.tvProfileContent);
 
-        spinnerCharacters = (Spinner) findViewById(R.id.spinnerCharacters);
-        spinnerCharAdapter = ArrayAdapter.createFromResource(this, R.array.array_characters, android.R.layout.simple_spinner_item);
-
-        spinnerCharAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner spinnerCharacters = (Spinner) findViewById(R.id.spinnerCharacters);
+        ArrayAdapter<CharSequence> spinnerCharAdapter = ArrayAdapter.createFromResource(this, R.array.array_characters, R.layout.spinner);
         spinnerCharacters.setAdapter(spinnerCharAdapter);
         spinnerCharacters.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -123,19 +119,17 @@ public class ProfileActivity extends MainActivity {
      * @param tempCharacter is the tempCharacter created with the information from Swapi.
      */
     private void setTvProfileContent(Character tempCharacter) {
-        tvProfileName.setText(tempCharacter.getName());
-
-        tvProfileContent.setText(
-                getString(R.string.content_profile,
-                        tempCharacter.getHeight(),
-                        tempCharacter.getMass(),
-                        tempCharacter.getHairColor(),
-                        tempCharacter.getSkinColor(),
-                        tempCharacter.getEyeColor(),
-                        tempCharacter.getBirthYear(),
-                        tempCharacter.getGender(),
-                        tempCharacter.getHomeworld()));
-
+        String profileContent = String.format(getResources().getString(R.string.content_profile_html),
+                tempCharacter.getHeight(),
+                tempCharacter.getMass(),
+                tempCharacter.getHairColor(),
+                tempCharacter.getSkinColor(),
+                tempCharacter.getEyeColor(),
+                tempCharacter.getBirthYear(),
+                tempCharacter.getGender(),
+                tempCharacter.getHomeworld());
+        CharSequence profileContentHtml = Html.fromHtml(profileContent);
+        tvProfileContent.setText(profileContentHtml);
         setIvProfilePic();
     }
 

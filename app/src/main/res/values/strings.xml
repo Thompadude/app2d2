@@ -5,6 +5,7 @@
     <string name="action_about">About</string>
     <string name="action_forcemeter">Light/Dark Side Meter</string>
     <string name="action_profiles">Character Profiles</string>
+    <string name="action_quiz">Quiz</string>
     <string name="content_forcemeter">Checking which side of the force you are drawn to.</string>
     <string name="content_forcemeter_dark">You are drawn to the dark side! App set to dark side theme.</string>
     <string name="content_forcemeter_light">You are drawn to the light side! App set to light side theme.</string>
@@ -32,8 +33,17 @@
         <item>Finn</item>
         <item>Jango Fett</item>
     </string-array>
-    <string name="content_profile">
-        Height: %1$s centimeters\nMass: %2$s kilograms\nHair Color: %3$s\nSkin Color: %4$s\nEye Color: %5$s\nBirth Year: %6$s\nGender: %7$s\nHomeworld: %8$s
-    </string>
-    <string name="luke">Luke Skywalker</string>
+    <string name="content_profile_html">
+        Height &lt;b>%1$s centimeters&lt;/b>&lt;br>
+        Mass &lt;b>%2$s kilograms&lt;/b>&lt;br>
+        Hair Color &lt;b>%3$s&lt;/b>&lt;br>
+        Skin Color &lt;b>%4$s&lt;/b>&lt;br>
+        Eye Color &lt;b>%5$s&lt;/b>&lt;br>
+        Birth Year &lt;b>%6$s&lt;/b>&lt;br>
+        Gender &lt;b>%7$s&lt;/b>&lt;br>
+        Home World &lt;b>%8$s&lt;/b></string>
+    <string name="quiz_welcome">Welcome to the Star Wars Quiz! Begin by typing your name and press start. Good luck!</string>
+    <string name="enter_name">Enter name</string>
+    <string name="start">Start</string>
+    <string name="quiz_headline">Welcome %1$s!</string>
 </resources>

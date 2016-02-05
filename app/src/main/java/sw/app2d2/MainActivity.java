@@ -15,6 +15,7 @@ import java.util.Map;
 import sw.app2d2.characters.ProfileActivity;
 import sw.app2d2.database.Data;
 import sw.app2d2.forcemeter.ForceMeterActivity;
+import sw.app2d2.quiz.QuizNewGameActivity;
 
 public class MainActivity extends Activity {
 
@@ -26,7 +27,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_main);
+        setContentView(R.layout.activity_main);
         setActivities();
         setFadeDurations(5000);
         setTheme();
@@ -52,6 +53,11 @@ public class MainActivity extends Activity {
                 return true;
             case R.id.action_profiles:
                 startActivity((Intent) getActivities().get("profiles"));
+                return true;
+            case R.id.action_quiz:
+                startActivity((Intent) getActivities().get("quiz"));
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -74,6 +80,9 @@ public class MainActivity extends Activity {
             case "characters.ProfileActivity":
                 menu.getItem(3).setEnabled(false);
                 break;
+            case "quiz.QuizNewGameActivity":
+                menu.getItem(4).setEnabled(false);
+                break;
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -84,6 +93,7 @@ public class MainActivity extends Activity {
         activities.put("about", new Intent(this, AboutActivity.class));
         activities.put("lightDarkSideMeter", new Intent(this, ForceMeterActivity.class));
         activities.put("profiles", new Intent(this, ProfileActivity.class));
+        activities.put("quiz", new Intent(this, QuizNewGameActivity.class));
     }
 
     public Map getActivities() {
@@ -114,10 +124,10 @@ public class MainActivity extends Activity {
             setThisView(this.findViewById(android.R.id.content));
             if (Data.getForceValueData().getForceValue() < 100) {
                 getThisView().setBackgroundColor(ContextCompat.getColor(this, R.color.bg_dark_side));
-                super.setTheme(R.style.DarkSide);
+                super.setTheme(R.style.DarkSideTheme);
             } else {
                 getThisView().setBackgroundColor(ContextCompat.getColor(this, R.color.bg_light_side));
-                super.setTheme(R.style.LightSide);
+                super.setTheme(R.style.LightSideTheme);
             }
         }
     }
