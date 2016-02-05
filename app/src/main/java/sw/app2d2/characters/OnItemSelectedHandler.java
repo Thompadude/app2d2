@@ -41,15 +41,15 @@ public class OnItemSelectedHandler {
             case 15:
                 return "Mace Windu";
             case 16:
-                return null;
+                return "Dooku";
             case 17:
-                return null;
+                return "Rey";
             case 18:
-                return null;
+                return "BB8";
             case 19:
-                return null;
+                return "Finn";
             case 20:
-                return null;
+                return "Jango Fett";
             default:
                 return null;
         }

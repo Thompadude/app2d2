@@ -42,6 +42,16 @@ public class ProfilePicHandler {
                 return R.drawable.icon_padme;
             case "Mace Windu":
                 return R.drawable.icon_mace;
+            case "Dooku":
+                return R.drawable.icon_dooku;
+            case "Rey":
+                return R.drawable.icon_rey;
+            case "BB8":
+                return R.drawable.icon_bb8;
+            case "Finn":
+                return R.drawable.icon_finn;
+            case "Jango Fett":
+                return R.drawable.icon_jango;
             default:
                 return R.drawable.icon_profilemissing;
         }
