@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,12 +18,14 @@ import sw.app2d2.characters.ProfileActivity;
 import sw.app2d2.database.Data;
 import sw.app2d2.forcemeter.ForceMeterActivity;
 import sw.app2d2.quiz.QuizNewGameActivity;
+import sw.app2d2.quotes.YodaQuotes;
 
 public class MainActivity extends Activity {
 
     private AlphaAnimation fadeInAnimation = new AlphaAnimation(0, 1);
     private AlphaAnimation fadeOutAnimation = new AlphaAnimation(1, 0);
     private Map activities;
+    private TextView tvContentMain;
     private View thisView;
 
     @Override
@@ -31,6 +35,12 @@ public class MainActivity extends Activity {
         setActivities();
         setFadeDurations(5000);
         setTheme();
+
+        YodaQuotes yodaQuotes = new YodaQuotes();
+        String yodaQuote = yodaQuotes.getRandomYodaQuote();
+
+        tvContentMain = (TextView) findViewById(R.id.content_main);
+        tvContentMain.setText(yodaQuote);
     }
 
     @Override
@@ -67,22 +77,27 @@ public class MainActivity extends Activity {
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        Log.v("LOG", getClass().toString());
         switch (getLocalClassName()) {
-            case "MainActivity":
+            case "sw.app2d2.MainActivity":
                 menu.getItem(0).setEnabled(false);
                 break;
-            case "AboutActivity":
+            case "sw.app2d2.AboutActivity":
                 menu.getItem(1).setEnabled(false);
                 break;
-            case "ForceMeterActivity":
+            case "sw.app2d2.forcemeter.ForceMeterActivity":
                 menu.getItem(2).setEnabled(false);
                 break;
-            case "characters.ProfileActivity":
+            case "sw.app2d2.characters.ProfileActivity":
                 menu.getItem(3).setEnabled(false);
                 break;
-            case "quiz.QuizNewGameActivity":
+            case "sw.app2d2.quiz.QuizNewGameActivity":
                 menu.getItem(4).setEnabled(false);
                 break;
+            case "sw.app2d2.quiz.QuizActivity":
+                menu.getItem(4).setEnabled(false);
+                break;
+
         }
         return super.onPrepareOptionsMenu(menu);
     }
