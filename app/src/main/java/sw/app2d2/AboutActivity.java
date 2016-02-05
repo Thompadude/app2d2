@@ -5,16 +5,16 @@ import android.widget.TextView;
 
 public class AboutActivity extends MainActivity {
 
-    TextView tvContentMain;
+    TextView tvAbout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         setTheme();
+        setContentView(R.layout.activity_about);
 
-        tvContentMain = (TextView) findViewById(R.id.content_main);
-        tvContentMain.setText(R.string.about);
+        tvAbout = (TextView) findViewById(R.id.tvAbout);
+        tvAbout.setText(R.string.about);
     }
 
 }

@@ -18,8 +18,8 @@ public class QuizNewGameActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newquiz);
         setTheme();
+        setContentView(R.layout.activity_newquiz);
 
         etName = (EditText) findViewById(R.id.etName);
         btnStart = (Button) findViewById(R.id.btnStart);

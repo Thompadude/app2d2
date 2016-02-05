@@ -3,7 +3,6 @@ package sw.app2d2;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,16 +30,21 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme();
         setContentView(R.layout.activity_main);
         setActivities();
         setFadeDurations(5000);
-        setTheme();
 
         YodaQuotes yodaQuotes = new YodaQuotes();
         String yodaQuote = yodaQuotes.getRandomYodaQuote();
 
         tvContentMain = (TextView) findViewById(R.id.content_main);
         tvContentMain.setText(yodaQuote);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -136,13 +140,10 @@ public class MainActivity extends Activity {
      */
     public void setTheme() {
         if (Data.getForceValueData().isMeasured()) {
-            setThisView(this.findViewById(android.R.id.content));
             if (Data.getForceValueData().getForceValue() < 100) {
-                getThisView().setBackgroundColor(ContextCompat.getColor(this, R.color.bg_dark_side));
-                super.setTheme(R.style.DarkSideTheme);
+                setTheme(R.style.DarkSideTheme);
             } else {
-                getThisView().setBackgroundColor(ContextCompat.getColor(this, R.color.bg_light_side));
-                super.setTheme(R.style.LightSideTheme);
+                setTheme(R.style.LightSideTheme);
             }
         }
     }

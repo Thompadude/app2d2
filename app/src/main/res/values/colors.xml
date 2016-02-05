@@ -9,4 +9,5 @@
     <color name="black">#000000</color>
     <color name="bg_dark_side">#800000</color>
     <color name="bg_light_side">#e5ffff</color>
+    <color name="transparency">#00000000</color>
 </resources>

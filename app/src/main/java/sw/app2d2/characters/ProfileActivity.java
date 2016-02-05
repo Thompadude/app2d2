@@ -32,8 +32,8 @@ public class ProfileActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profiles);
         setTheme();
+        setContentView(R.layout.activity_profiles);
 
         ivProfilePic = (ImageView) findViewById(R.id.ivProfilePic);
         tvProfileContent = (TextView) findViewById(R.id.tvProfileContent);
