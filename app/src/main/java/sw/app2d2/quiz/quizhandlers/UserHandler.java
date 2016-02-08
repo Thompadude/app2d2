@@ -1,5 +1,8 @@
 package sw.app2d2.quiz.quizhandlers;
 
+/**
+ * Handles the user (client) in the quiz section.
+ */
 public class UserHandler {
 
     private String userName;
@@ -17,7 +20,7 @@ public class UserHandler {
         return score;
     }
 
-    public void addPoint(int score) {
+    public void addPoint() {
         this.score++;
     }
 

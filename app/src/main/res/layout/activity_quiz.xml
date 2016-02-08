@@ -48,7 +48,17 @@
 
     <Button
         android:id="@+id/btnSubmit"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="left|top"
-        android:text="Sumbit Answers" />
+        android:text="@string/submit_answer" />
+
+    <Button
+        android:id="@+id/btnResult"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:enabled="false"
+        android:text="@string/view_details" />
 
 </GridLayout>

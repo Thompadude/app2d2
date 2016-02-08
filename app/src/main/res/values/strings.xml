@@ -46,4 +46,6 @@
     <string name="enter_name">Enter name</string>
     <string name="start">Start</string>
     <string name="quiz_headline">Welcome %1$s!</string>
+    <string name="submit_answer">Sumbit Answer</string>
+    <string name="view_details">View Details</string>
 </resources>

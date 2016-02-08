@@ -7,10 +7,12 @@ import sw.app2d2.quiz.questions.FirstWord;
 import sw.app2d2.quiz.questions.Question;
 import sw.app2d2.quiz.questions.StormtrooperWeapon;
 
+/**
+ * Handles the questions classes.
+ */
 public class QuestionHandler {
 
     List<Question> questions;
-    int questionsSize;
 
     public QuestionHandler() {
         this.questions = new ArrayList<>();
@@ -20,10 +22,6 @@ public class QuestionHandler {
 
     public List<Question> getQuestions() {
         return questions;
-    }
-
-    public int getQuestionsSize() {
-        return questions.size();
     }
 
 }

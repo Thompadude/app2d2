@@ -14,4 +14,9 @@ public class FirstWord extends Question {
         return false;
     }
 
+    @Override
+    public String getCorrectAnswer() {
+        return "Luke";
+    }
+
 }
