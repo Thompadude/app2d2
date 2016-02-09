@@ -1,4 +1,4 @@
-package sw.app2d2.quiz.quizhandlers;
+package sw.app2d2.quiz.handlers;
 
 /**
  * Handles the user (client) in the quiz section.

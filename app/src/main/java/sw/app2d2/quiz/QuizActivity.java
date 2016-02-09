@@ -13,8 +13,8 @@ import java.util.List;
 
 import sw.app2d2.MainActivity;
 import sw.app2d2.R;
-import sw.app2d2.quiz.quizhandlers.QuestionHandler;
-import sw.app2d2.quiz.quizhandlers.UserHandler;
+import sw.app2d2.quiz.handlers.QuestionHandler;
+import sw.app2d2.quiz.handlers.UserHandler;
 
 public class QuizActivity extends MainActivity {
 

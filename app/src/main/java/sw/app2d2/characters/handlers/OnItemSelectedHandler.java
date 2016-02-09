@@ -1,4 +1,4 @@
-package sw.app2d2.characters;
+package sw.app2d2.characters.handlers;
 
 public class OnItemSelectedHandler {
 

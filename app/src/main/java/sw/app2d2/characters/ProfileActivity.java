@@ -18,6 +18,9 @@ import org.json.JSONObject;
 
 import sw.app2d2.MainActivity;
 import sw.app2d2.R;
+import sw.app2d2.characters.handlers.CharacterUrlHandler;
+import sw.app2d2.characters.handlers.OnItemSelectedHandler;
+import sw.app2d2.characters.handlers.ProfilePicHandler;
 
 /**
  * Collects information about characters in the Star Wars universe from Swapi, a

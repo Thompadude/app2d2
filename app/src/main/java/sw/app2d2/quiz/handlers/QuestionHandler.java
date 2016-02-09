@@ -1,4 +1,4 @@
-package sw.app2d2.quiz.quizhandlers;
+package sw.app2d2.quiz.handlers;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import sw.app2d2.characters.ProfileActivity;
-import sw.app2d2.database.Data;
+import sw.app2d2.data.ForceValueData;
 import sw.app2d2.forcemeter.ForceMeterActivity;
 import sw.app2d2.quiz.QuizNewGameActivity;
 import sw.app2d2.quotes.YodaQuotes;
@@ -139,8 +139,8 @@ public class MainActivity extends Activity {
      * Sets theme depending on the user's force value -- but only if it has been measured.
      */
     public void setTheme() {
-        if (Data.getForceValueData().isMeasured()) {
-            if (Data.getForceValueData().getForceValue() < 100) {
+        if (ForceValueData.getForceValueData().isMeasured()) {
+            if (ForceValueData.getForceValueData().getForceValue() < 100) {
                 setTheme(R.style.DarkSideTheme);
             } else {
                 setTheme(R.style.LightSideTheme);
