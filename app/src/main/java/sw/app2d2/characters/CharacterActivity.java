@@ -26,7 +26,7 @@ import sw.app2d2.characters.handlers.ProfilePicHandler;
  * Collects information about characters in the Star Wars universe from Swapi, a
  * Star Wars API. The format is JSON.
  */
-public class ProfileActivity extends MainActivity {
+public class CharacterActivity extends MainActivity {
 
     private ImageView ivProfilePic;
     private String name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld;
@@ -36,7 +36,7 @@ public class ProfileActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme();
-        setContentView(R.layout.activity_profiles);
+        setContentView(R.layout.activity_characters);
 
         ivProfilePic = (ImageView) findViewById(R.id.ivProfilePic);
         tvProfileContent = (TextView) findViewById(R.id.tvProfileContent);

@@ -19,9 +19,14 @@
         </activity>
         <activity android:name=".AboutActivity" />
         <activity android:name=".forcemeter.ForceMeterActivity" />
-        <activity android:name=".characters.ProfileActivity" />
+        <activity android:name=".characters.CharacterActivity" />
         <activity android:name=".quiz.QuizNewGameActivity" />
-        <activity android:name=".quiz.QuizActivity"></activity>
+        <activity android:name=".quiz.QuizActivity" />
+
+        <service
+            android:name=".characters.json.CharacterService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

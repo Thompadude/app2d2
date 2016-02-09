@@ -13,7 +13,8 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Map;
 
-import sw.app2d2.characters.ProfileActivity;
+import sw.app2d2.characters.CharacterActivity;
+import sw.app2d2.characters.json.CharacterService;
 import sw.app2d2.data.ForceValueData;
 import sw.app2d2.forcemeter.ForceMeterActivity;
 import sw.app2d2.quiz.QuizNewGameActivity;
@@ -40,6 +41,10 @@ public class MainActivity extends Activity {
 
         tvContentMain = (TextView) findViewById(R.id.content_main);
         tvContentMain.setText(yodaQuote);
+
+        // TEST
+        CharacterService characterService = new CharacterService();
+        characterService.getCharacter("Luke Skywalker");
     }
 
     @Override
@@ -92,7 +97,7 @@ public class MainActivity extends Activity {
             case "sw.app2d2.forcemeter.ForceMeterActivity":
                 menu.getItem(2).setEnabled(false);
                 break;
-            case "sw.app2d2.characters.ProfileActivity":
+            case "sw.app2d2.characters.CharacterActivity":
                 menu.getItem(3).setEnabled(false);
                 break;
             case "sw.app2d2.quiz.QuizNewGameActivity":
@@ -111,7 +116,7 @@ public class MainActivity extends Activity {
         activities.put("home", new Intent(this, MainActivity.class));
         activities.put("about", new Intent(this, AboutActivity.class));
         activities.put("lightDarkSideMeter", new Intent(this, ForceMeterActivity.class));
-        activities.put("profiles", new Intent(this, ProfileActivity.class));
+        activities.put("profiles", new Intent(this, CharacterActivity.class));
         activities.put("quiz", new Intent(this, QuizNewGameActivity.class));
     }
 
