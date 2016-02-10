@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sw.app2d2.quiz.questions.FirstWord;
+import sw.app2d2.quiz.questions.Leia;
 import sw.app2d2.quiz.questions.Question;
+import sw.app2d2.quiz.questions.ReturnOfTheJedi;
 import sw.app2d2.quiz.questions.StarWarsReleaseDate;
 import sw.app2d2.quiz.questions.StormTrooperWeapon;
 
@@ -18,13 +20,12 @@ public class QuestionHandler implements Serializable {
 
     public QuestionHandler() {
         this.questions = new ArrayList<>();
-        Question firstWord = new FirstWord();
-        Question trooperWeapon = new StormTrooperWeapon();
-        Question releaseDate = new StarWarsReleaseDate();
 
-        this.questions.add(firstWord);
-        this.questions.add(trooperWeapon);
-        this.questions.add(releaseDate);
+        this.questions.add(new FirstWord());
+        this.questions.add(new StormTrooperWeapon());
+        this.questions.add(new StarWarsReleaseDate());
+        this.questions.add(new Leia());
+        this.questions.add(new ReturnOfTheJedi());
     }
 
     public List<Question> getQuestions() {

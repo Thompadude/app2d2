@@ -22,9 +22,10 @@ public class QuizResultActivity extends MainActivity {
         UserHandler user = (UserHandler) intent.getSerializableExtra("user");
 
         // This works!
-        Log.v("LOG", String.valueOf(questionHandler.getQuestions().get(0).isAnsweredCorrect()));
-        Log.v("LOG", String.valueOf(questionHandler.getQuestions().get(1).isAnsweredCorrect()));
-        Log.v("LOG", String.valueOf(questionHandler.getQuestions().get(2).isAnsweredCorrect()));
+        for (int i = 0; i < questionHandler.getQuestions().size(); i++) {
+            Log.v("LOG", String.valueOf(questionHandler.getQuestions().get(i).isAnsweredCorrect()));
+        }
         Log.v("LOG", user.getUserName() + " " + user.getScore());
     }
+
 }
