@@ -2,9 +2,9 @@ package sw.app2d2.characters;
 
 public class Character {
 
-    private String name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld;
+    private String name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeWorld;
 
-    public Character(String name, String height, String mass, String hairColor, String skinColor, String eyeColor, String birthYear, String gender, String homeworld) {
+    public Character(String name, String height, String mass, String hairColor, String skinColor, String eyeColor, String birthYear, String gender, String homeWorld) {
         this.name = name;
         this.height = height;
         this.mass = mass;
@@ -13,7 +13,7 @@ public class Character {
         this.eyeColor = eyeColor;
         this.birthYear = birthYear;
         this.gender = gender;
-        this.homeworld = homeworld;
+        this.homeWorld = homeWorld;
     }
 
     public String getName() {
@@ -48,8 +48,8 @@ public class Character {
         return gender;
     }
 
-    public String getHomeworld() {
-        return homeworld;
+    public String getHomeWorld() {
+        return homeWorld;
     }
 
 }

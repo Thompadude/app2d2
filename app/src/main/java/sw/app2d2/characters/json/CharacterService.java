@@ -4,8 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
-import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,19 +19,33 @@ import java.net.URLConnection;
 import sw.app2d2.characters.Character;
 import sw.app2d2.characters.handlers.CharacterUrlHandler;
 
+/**
+ * Handles communication with Swapi -- a Star Wars API.
+ */
 public class CharacterService extends Service {
 
     BufferedReader bufferedReader;
     Character character;
     CharacterUrlHandler characterUrlHandler;
-    JSONObject characterData, characterHomeworldData;
-    String characterName, characterHomeworld, characterHomeworldUrl;
+    CharacterServiceCallback characterServiceCallback;
+    JSONObject characterData, characterHomeWorldData;
+    String characterName, characterHomeWorld, characterHomeWorldUrl;
     StringBuilder response;
 
-    public CharacterService() {
+    /**
+     * @param characterServiceCallback is the interface which handles the success and failures of the service.
+     */
+    public CharacterService(CharacterServiceCallback characterServiceCallback) {
+        this.characterServiceCallback = characterServiceCallback;
     }
 
-    public Character getCharacter(String characterRequest) {
+    /**
+     * Fetch a character from the API. On success -- get the url to the character's home planet
+     * and also fetch that from the same API.
+     *
+     * @param characterRequest is the name of the character to fetch information about.
+     */
+    public void fetchCharacter(String characterRequest) {
         this.characterName = characterRequest;
         characterUrlHandler = new CharacterUrlHandler();
 
@@ -49,66 +61,69 @@ public class CharacterService extends Service {
             @Override
             protected void onPostExecute(String s) {
                 if (s == null) {
-                    Toast.makeText(getApplicationContext(), "Connection to Swapi failed", Toast.LENGTH_LONG).show();
+                    // TODO add error handling
                     return;
                 }
 
                 try {
                     characterData = new JSONObject(s);
-                    characterHomeworldUrl = characterData.optString("homeworld");
-                    setCharacterHomeworld();
-                    createNewCharacter();
+                    // Character data fetch successful! Move on to fetch home world URL.
+                    characterHomeWorldUrl = characterData.optString("homeworld");
+                    fetchCharacterHomeWorld();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }.execute();
-        return null;
     }
 
-
-    private void createNewCharacter() {
-        // TODO fixa homeworld!!!
+    private Character createCharacter() {
         character = new Character(
                 characterName,
-                characterData.optString("name"),
+                characterData.optString("height"),
                 characterData.optString("mass"),
                 characterData.optString("hair_color"),
                 characterData.optString("skin_color"),
                 characterData.optString("eye_color"),
                 characterData.optString("birth_year"),
                 characterData.optString("gender"),
-                characterHomeworld
+                characterHomeWorld
         );
-        Toast.makeText(getApplicationContext(), "JAAAA", Toast.LENGTH_LONG).show();
+        return character;
     }
 
-    public void setCharacterHomeworld() {
-        new AsyncTask<String, Void, String>() {
+    /**
+     * Fetch which home world the character have. characterHomeWorldUrl need to be set.
+     */
+    public void fetchCharacterHomeWorld() {
+        if (!characterHomeWorldUrl.equals(null)) {
+            new AsyncTask<String, Void, String>() {
 
-            @Override
-            protected String doInBackground(String... params) {
-                setBufferedReader(characterHomeworldUrl);
-                setResponse();
-                return response.toString();
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                if (s == null) {
-                    Toast.makeText(getApplicationContext(), "Connection to Swapi failed", Toast.LENGTH_LONG).show();
-                    return;
+                @Override
+                protected String doInBackground(String... params) {
+                    setBufferedReader(characterHomeWorldUrl);
+                    setResponse();
+                    return response.toString();
                 }
 
-                try {
-                    characterHomeworldData = new JSONObject(s);
-                    characterHomeworld = characterHomeworldData.optString("name");
-                    createNewCharacter();
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                @Override
+                protected void onPostExecute(String s) {
+                    if (s == null) {
+                        // TODO add error handling
+                        return;
+                    }
+
+                    try {
+                        characterHomeWorldData = new JSONObject(s);
+                        characterHomeWorld = characterHomeWorldData.optString("name");
+                        // All character data fetching successful!
+                        characterServiceCallback.serviceSuccess(createCharacter());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        }.execute();
+            }.execute();
+        }
     }
 
     private void setResponse() {

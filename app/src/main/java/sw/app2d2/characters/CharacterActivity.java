@@ -8,28 +8,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import sw.app2d2.MainActivity;
 import sw.app2d2.R;
-import sw.app2d2.characters.handlers.CharacterUrlHandler;
 import sw.app2d2.characters.handlers.OnItemSelectedHandler;
 import sw.app2d2.characters.handlers.ProfilePicHandler;
+import sw.app2d2.characters.json.CharacterService;
+import sw.app2d2.characters.json.CharacterServiceCallback;
 
 /**
- * Collects information about characters in the Star Wars universe from Swapi, a
- * Star Wars API. The format is JSON.
+ * Present various characters from the Star Wars universe.
  */
-public class CharacterActivity extends MainActivity {
+public class CharacterActivity extends MainActivity implements CharacterServiceCallback {
 
     private ImageView ivProfilePic;
-    private String name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld;
+    private String characterName;
     private TextView tvProfileContent;
 
     @Override
@@ -48,89 +41,38 @@ public class CharacterActivity extends MainActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 OnItemSelectedHandler onItemSelectedHandler = new OnItemSelectedHandler();
-                name = onItemSelectedHandler.getStringCharacter(position);
-                if (name != null) {
+                characterName = onItemSelectedHandler.getStringCharacter(position);
+                if (characterName != null) {
                     setCharacter();
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
     }
 
-    /**
-     * Collect the information needed from Swapi and create new character.
-     */
     private void setCharacter() {
-        CharacterUrlHandler characterUrlHandler = new CharacterUrlHandler();
-        String swapiUrl = characterUrlHandler.getCharacterUrl(name);
-
-        AsyncHttpClient getCharacter = new AsyncHttpClient();
-        getCharacter.get(swapiUrl,
-                new JsonHttpResponseHandler() {
-                    @Override
-                    public void onSuccess(JSONObject response) {
-                        getSwapiConnectionSuccessToast();
-                        try {
-                            height = response.getString("height");
-                            mass = response.getString("mass");
-                            hairColor = response.getString("hair_color");
-                            skinColor = response.getString("skin_color");
-                            eyeColor = response.getString("eye_color");
-                            birthYear = response.getString("birth_year");
-                            gender = response.getString("gender");
-
-                            AsyncHttpClient getHomeWorld = new AsyncHttpClient();
-                            getHomeWorld.get(response.getString("homeworld"),
-                                    new JsonHttpResponseHandler() {
-                                        @Override
-                                        public void onSuccess(JSONObject response) {
-                                            try {
-                                                homeworld = response.getString("name");
-
-                                                Character tempCharacter = new Character(name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld);
-                                                setTvProfileContent(tempCharacter);
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onFailure(Throwable e, JSONObject errorResponse) {
-                                            getSwapiConnectionFailedToast();
-                                        }
-                                    });
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Throwable e, JSONObject errorResponse) {
-                        getSwapiConnectionFailedToast();
-                    }
-                });
+        CharacterService characterService = new CharacterService(this);
+        characterService.fetchCharacter(characterName);
     }
 
     /**
-     * Displays the information from Swapi in the TextView.
+     * Display the character information in the TextView.
      *
-     * @param tempCharacter is the tempCharacter created with the information from Swapi.
+     * @param character is the character to be displayed.
      */
-    private void setTvProfileContent(Character tempCharacter) {
+    private void setTvProfileContent(Character character) {
         String profileContent = String.format(getResources().getString(R.string.content_profile_html),
-                tempCharacter.getHeight(),
-                tempCharacter.getMass(),
-                tempCharacter.getHairColor(),
-                tempCharacter.getSkinColor(),
-                tempCharacter.getEyeColor(),
-                tempCharacter.getBirthYear(),
-                tempCharacter.getGender(),
-                tempCharacter.getHomeworld());
+                character.getHeight(),
+                character.getMass(),
+                character.getHairColor(),
+                character.getSkinColor(),
+                character.getEyeColor(),
+                character.getBirthYear(),
+                character.getGender(),
+                character.getHomeWorld());
         CharSequence profileContentHtml = Html.fromHtml(profileContent);
         tvProfileContent.setText(profileContentHtml);
         setIvProfilePic();
@@ -145,15 +87,17 @@ public class CharacterActivity extends MainActivity {
         ivProfilePic.startAnimation(getFadeInAnimation());
 
         ProfilePicHandler profilePicHandler = new ProfilePicHandler();
-        ivProfilePic.setImageResource(profilePicHandler.getCharacterProfilePic(name));
+        ivProfilePic.setImageResource(profilePicHandler.getCharacterProfilePic(characterName));
     }
 
-    private void getSwapiConnectionSuccessToast() {
-        Toast.makeText(getApplicationContext(), "Downloading Profile Info", Toast.LENGTH_SHORT).show();
+    @Override
+    public void serviceSuccess(Character character) {
+        setTvProfileContent(character);
     }
 
-    private void getSwapiConnectionFailedToast() {
-        Toast.makeText(getApplicationContext(), "Connection to SWAPI database failed", Toast.LENGTH_SHORT).show();
+    @Override
+    public void serviceFailure() {
+
     }
 
 }

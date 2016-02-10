@@ -3,7 +3,6 @@ package sw.app2d2;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import sw.app2d2.characters.CharacterActivity;
-import sw.app2d2.characters.json.CharacterService;
 import sw.app2d2.data.ForceValueData;
 import sw.app2d2.forcemeter.ForceMeterActivity;
 import sw.app2d2.quiz.QuizNewGameActivity;
@@ -41,10 +39,6 @@ public class MainActivity extends Activity {
 
         tvContentMain = (TextView) findViewById(R.id.content_main);
         tvContentMain.setText(yodaQuote);
-
-        // TEST
-        CharacterService characterService = new CharacterService();
-        characterService.getCharacter("Luke Skywalker");
     }
 
     @Override
@@ -86,7 +80,6 @@ public class MainActivity extends Activity {
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        Log.v("LOG", getClass().toString());
         switch (getLocalClassName()) {
             case "sw.app2d2.MainActivity":
                 menu.getItem(0).setEnabled(false);
