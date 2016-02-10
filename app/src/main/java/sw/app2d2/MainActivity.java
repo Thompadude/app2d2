@@ -3,6 +3,7 @@ package sw.app2d2;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,6 +81,7 @@ public class MainActivity extends Activity {
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        Log.v("menulog", getLocalClassName());
         switch (getLocalClassName()) {
             case "sw.app2d2.MainActivity":
                 menu.getItem(0).setEnabled(false);

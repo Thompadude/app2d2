@@ -1,5 +1,6 @@
 package sw.app2d2.characters;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -22,6 +23,7 @@ import sw.app2d2.characters.json.CharacterServiceCallback;
 public class CharacterActivity extends MainActivity implements CharacterServiceCallback {
 
     private ImageView ivProfilePic;
+    private ProgressDialog progressDialog;
     private String characterName;
     private TextView tvProfileContent;
 
@@ -54,6 +56,7 @@ public class CharacterActivity extends MainActivity implements CharacterServiceC
     }
 
     private void setCharacter() {
+        toogleProgressDialog(true);
         CharacterService characterService = new CharacterService(this);
         characterService.fetchCharacter(characterName);
     }
@@ -90,14 +93,28 @@ public class CharacterActivity extends MainActivity implements CharacterServiceC
         ivProfilePic.setImageResource(profilePicHandler.getCharacterProfilePic(characterName));
     }
 
+    private void toogleProgressDialog(boolean show) {
+        if (show) {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Fetching data from SWAPI");
+            progressDialog.show();
+        } else {
+            if (progressDialog != null) {
+                progressDialog.hide();
+            }
+        }
+
+    }
+
     @Override
     public void serviceSuccess(Character character) {
         setTvProfileContent(character);
+        toogleProgressDialog(false);
     }
 
     @Override
     public void serviceFailure() {
-
+        toogleProgressDialog(false);
     }
 
 }
