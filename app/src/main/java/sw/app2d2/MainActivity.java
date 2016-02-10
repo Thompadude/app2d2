@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
 
         tvContentMain = (TextView) findViewById(R.id.content_main);
         tvContentMain.setText(yodaQuote);
+
     }
 
     @Override
@@ -77,29 +78,29 @@ public class MainActivity extends Activity {
     }
 
     /**
-     * Disables menu item if already viewing that item's content.
+     * Hide the menu item if already viewing that item's content.
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         Log.v("menulog", getLocalClassName());
         switch (getLocalClassName()) {
             case "sw.app2d2.MainActivity":
-                menu.getItem(0).setEnabled(false);
+                menu.getItem(0).setVisible(false);
                 break;
             case "sw.app2d2.AboutActivity":
-                menu.getItem(1).setEnabled(false);
+                menu.getItem(1).setVisible(false);
                 break;
             case "sw.app2d2.forcemeter.ForceMeterActivity":
-                menu.getItem(2).setEnabled(false);
+                menu.getItem(2).setVisible(false);
                 break;
             case "sw.app2d2.characters.CharacterActivity":
-                menu.getItem(3).setEnabled(false);
+                menu.getItem(3).setVisible(false);
                 break;
             case "sw.app2d2.quiz.QuizNewGameActivity":
-                menu.getItem(4).setEnabled(false);
+                menu.getItem(4).setVisible(false);
                 break;
             case "sw.app2d2.quiz.QuizActivity":
-                menu.getItem(4).setEnabled(false);
+                menu.getItem(4).setVisible(false);
                 break;
 
         }
