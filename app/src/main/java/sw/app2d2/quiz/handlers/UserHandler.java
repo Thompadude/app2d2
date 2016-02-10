@@ -1,9 +1,11 @@
 package sw.app2d2.quiz.handlers;
 
+import java.io.Serializable;
+
 /**
  * Handles the user (client) in the quiz section.
  */
-public class UserHandler {
+public class UserHandler implements Serializable {
 
     private String userName;
     private int score;

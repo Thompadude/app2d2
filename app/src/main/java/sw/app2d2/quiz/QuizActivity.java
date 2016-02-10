@@ -1,5 +1,6 @@
 package sw.app2d2.quiz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,7 @@ import sw.app2d2.quiz.handlers.UserHandler;
 public class QuizActivity extends MainActivity {
 
     private boolean isGameOver;
-    private Button btnSubmit;
+    private Button btnSubmit, btnResult;
     private int questionIndex;
     private QuestionHandler questionHandler;
     private RadioButton rbAnswer;
@@ -70,6 +71,17 @@ public class QuizActivity extends MainActivity {
                     Button btnResult = (Button) findViewById(R.id.btnResult);
                     btnResult.setEnabled(true);
                 }
+            }
+        });
+
+        btnResult = (Button) findViewById(R.id.btnResult);
+        btnResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent quizResultIntent = (Intent) getActivities().get("quizResult");
+                quizResultIntent.putExtra("questionHandler", questionHandler);
+                quizResultIntent.putExtra("user", user);
+                startActivity(quizResultIntent);
             }
         });
     }

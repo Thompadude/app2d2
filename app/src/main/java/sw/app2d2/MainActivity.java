@@ -17,6 +17,7 @@ import sw.app2d2.characters.CharacterActivity;
 import sw.app2d2.data.ForceValueData;
 import sw.app2d2.forcemeter.ForceMeterActivity;
 import sw.app2d2.quiz.QuizNewGameActivity;
+import sw.app2d2.quiz.QuizResultActivity;
 import sw.app2d2.quotes.YodaQuotes;
 
 public class MainActivity extends Activity {
@@ -82,7 +83,6 @@ public class MainActivity extends Activity {
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        Log.v("menulog", getLocalClassName());
         switch (getLocalClassName()) {
             case "sw.app2d2.MainActivity":
                 menu.getItem(0).setVisible(false);
@@ -114,6 +114,7 @@ public class MainActivity extends Activity {
         activities.put("lightDarkSideMeter", new Intent(this, ForceMeterActivity.class));
         activities.put("profiles", new Intent(this, CharacterActivity.class));
         activities.put("quiz", new Intent(this, QuizNewGameActivity.class));
+        activities.put("quizResult", new Intent(this, QuizResultActivity.class));
     }
 
     public Map getActivities() {
