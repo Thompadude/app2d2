@@ -8,6 +8,15 @@ public abstract class Question implements Serializable {
     private String[] alternatives;
     private String question;
     private String correctAnswer;
+    private String userAnswer;
+
+    public String getUserAnswer() {
+        return userAnswer;
+    }
+
+    public void setUserAnswer(String userAnswer) {
+        this.userAnswer = userAnswer;
+    }
 
     /**
      * @param alternatives is the answer alternatives the user has to choose from.

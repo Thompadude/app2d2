@@ -7,6 +7,8 @@
     <color name="blue">#0000ff</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="correct">#30B238</color>
+    <color name="incorrect">#CC4132</color>
     <color name="bg_dark_side">#800000</color>
     <color name="bg_light_side">#e5ffff</color>
     <color name="transparency">#00000000</color>

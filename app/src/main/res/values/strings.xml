@@ -48,4 +48,10 @@
     <string name="quiz_headline">Welcome %1$s!</string>
     <string name="submit_answer">Sumbit Answer</string>
     <string name="view_details">View Details</string>
+    <string name="quiz_question">Question: %1$s</string>
+    <string name="quiz_correct_answer">Correct Answer: %1$s</string>
+    <string name="quiz_user_answer">Your Answer: %1$s</string>
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
+    <string name="quiz_feedback">Thanks for playing, %1$s!\nYou answered %2$d of the %3$d questions correct.</string>
 </resources>

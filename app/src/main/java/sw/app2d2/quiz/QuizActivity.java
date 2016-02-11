@@ -39,6 +39,7 @@ public class QuizActivity extends MainActivity {
         Bundle bundle = getIntent().getExtras();
         user = new UserHandler(bundle.getString("userName"));
 
+        // TODO remove this message when game starts.
         // Welcome the user.
         tvHeadline = (TextView) findViewById(R.id.quizHeadline);
         tvHeadline.setText(String.format(getResources().getString(R.string.quiz_headline), user.getUserName()));
@@ -58,16 +59,21 @@ public class QuizActivity extends MainActivity {
                 if (!isGameOver) {
                     // Get answer from the user.
                     rbAnswer = (RadioButton) findViewById(rgAnswers.getCheckedRadioButtonId());
-                    answer = rbAnswer.getText().toString();
-                    // Check the answer
-                    checkAnswer(questionHandler.getQuestions().get(questionIndex).isCorrect(answer));
-                    // Uncheck the radio button.
-                    rbAnswer.setChecked(false);
+
+                    // Continue only if the user has picked an answer.
+                    if (radioButtonIsChecked()) {
+                        answer = rbAnswer.getText().toString();
+                        // Save the user's answer.
+                        questionHandler.getQuestions().get(questionIndex).setUserAnswer(answer);
+                        // Check if the answer is correct.
+                        checkAnswer(questionHandler.getQuestions().get(questionIndex).isCorrect(answer));
+                        // Uncheck the radio button.
+                        rgAnswers.clearCheck();
+                    }
                 }
 
                 if (isGameOver) {
                     btnSubmit.setEnabled(false);
-                    quizFinishedFeedback();
                     Button btnResult = (Button) findViewById(R.id.btnResult);
                     btnResult.setEnabled(true);
                 }
@@ -86,12 +92,21 @@ public class QuizActivity extends MainActivity {
         });
     }
 
+    private boolean radioButtonIsChecked() {
+        if (rgAnswers.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "Please pick an answer.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Set the question in the view.
      *
      * @param questionIndex is the index of the question list.
      */
     private void setQuestion(int questionIndex) {
+
         // Check if more questions is available.
         if (questionIndex >= questionHandler.getQuestions().size()) {
             isGameOver = true;
@@ -129,13 +144,6 @@ public class QuizActivity extends MainActivity {
             questionIndex++;
             setQuestion(questionIndex);
         }
-    }
-
-    private void quizFinishedFeedback() {
-        String feedback = "Quiz is over! You answered " + user.getScore() +
-                " of the " + questionHandler.getQuestions().size() +
-                " questions correct.";
-        Toast.makeText(getApplicationContext(), feedback, Toast.LENGTH_LONG).show();
     }
 
 }
