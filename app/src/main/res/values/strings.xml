@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">APP2D2</string>
-    <string name="about">Made by Thomas Lansing\nthomas@lansing.nu</string>
+    <string name="about">Creator: Thomas Lansing\n+46 736 22 10 14\nthomas@lansing.nu\nAll images are stolen</string>
     <string name="action_home">Home</string>
     <string name="action_about">About</string>
-    <string name="action_forcemeter">Light/Dark Side Meter</string>
+    <string name="action_forcemeter">Force Meter</string>
     <string name="action_profiles">Character Profiles</string>
     <string name="action_quiz">Quiz</string>
     <string name="content_forcemeter">Checking which side of the force you are drawn to.</string>
