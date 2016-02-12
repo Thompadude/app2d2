@@ -24,6 +24,7 @@ public class ForceMeterActivity extends MainActivity implements SensorEventListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forcemeter);
+        setFadeDurations(5000);
 
         // Get access to the light sensor.
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);

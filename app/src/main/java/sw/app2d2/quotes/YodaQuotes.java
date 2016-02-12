@@ -21,7 +21,11 @@ public class YodaQuotes {
         yodaQuotes.add("\"Always two there are, no more, no less. A master and an apprentice.\"");
         yodaQuotes.add("\"The dark side clouds everything. Impossible to see the future is.\"");
         yodaQuotes.add("\"I cannot teach him. The boy has no patience.\"");
-
+        yodaQuotes.add("\"When nine hundred years old you reach, look as good you will not.\"");
+        yodaQuotes.add("\"A Jedi uses the Force for knowledge and defense, never for attack.\"");
+        yodaQuotes.add("\"Adventure. Excitement. A Jedi craves not these things.\"");
+        yodaQuotes.add("\"Judge me by my size, do you?\"");
+        yodaQuotes.add("\"Do. Or do not. There is no try.\"");
     }
 
     public String getRandomYodaQuote() {

@@ -24,8 +24,10 @@ public class MainActivity extends Activity {
     private AlphaAnimation fadeInAnimation = new AlphaAnimation(0, 1);
     private AlphaAnimation fadeOutAnimation = new AlphaAnimation(1, 0);
     private Map activities;
+    private String quote;
     private TextView tvContentMain;
     private View thisView;
+    private YodaQuotes yodaQuotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +35,24 @@ public class MainActivity extends Activity {
         setTheme();
         setContentView(R.layout.activity_main);
         setActivities();
-        setFadeDurations(5000);
+        setFadeDurations(1000);
 
-        YodaQuotes yodaQuotes = new YodaQuotes();
-        String yodaQuote = yodaQuotes.getRandomYodaQuote();
+        yodaQuotes = new YodaQuotes();
 
         tvContentMain = (TextView) findViewById(R.id.content_main);
-        tvContentMain.setText(yodaQuote);
+        generateYodaQuote();
+        tvContentMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                generateYodaQuote();
+            }
+        });
+    }
 
+    private void generateYodaQuote() {
+        quote = yodaQuotes.getRandomYodaQuote();
+        tvContentMain.setText(quote);
+        tvContentMain.startAnimation(getFadeInAnimation());
     }
 
     @Override
