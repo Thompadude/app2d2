@@ -18,8 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".AboutActivity" />
-        <activity android:name=".forcemeter.ForceMeterActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".forcemeter.ForceMeterActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".characters.CharacterActivity" />
         <activity android:name=".quiz.QuizNewGameActivity" />
         <activity android:name=".quiz.QuizActivity" />
@@ -29,7 +30,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".quiz.QuizResultActivity"></activity>
+        <activity android:name=".quiz.QuizResultActivity" />
+        <activity android:name=".quiz.highscore.HighScoreActivity"></activity>
     </application>
 
 </manifest>

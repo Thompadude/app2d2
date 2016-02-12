@@ -56,13 +56,13 @@ public class QuizActivity extends MainActivity {
             @Override
             public void onClick(View v) {
                 if (!isGameOver) {
-                    tvHeadline.setText(String.format(getResources().getString(R.string.question_index), (questionIndex + 2)));
-
                     // Get answer from the user.
                     rbAnswer = (RadioButton) findViewById(rgAnswers.getCheckedRadioButtonId());
 
                     // Continue only if the user has picked an answer.
                     if (radioButtonIsChecked()) {
+                        tvHeadline.setText(String.format(getResources().getString(R.string.question_index), (questionIndex + 2)));
+
                         answer = rbAnswer.getText().toString();
                         // Save the user's answer.
                         questionHandler.getQuestions().get(questionIndex).setUserAnswer(answer);

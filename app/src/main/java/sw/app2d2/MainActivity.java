@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
     }
 
     /**
-     * Generate a new random yoda quote. Never generates the same quote two times in a row.
+     * Generate a new random yoda quote. Never generates the same quote twice.
      */
     private void generateYodaQuote() {
         do {
@@ -124,6 +124,9 @@ public class MainActivity extends Activity {
         return super.onPrepareOptionsMenu(menu);
     }
 
+    /**
+     * Set all the activities used throughout the application.
+     */
     public void setActivities() {
         activities = new HashMap();
         activities.put("home", new Intent(this, MainActivity.class));
@@ -132,6 +135,7 @@ public class MainActivity extends Activity {
         activities.put("profiles", new Intent(this, CharacterActivity.class));
         activities.put("quiz", new Intent(this, QuizNewGameActivity.class));
         activities.put("quizResult", new Intent(this, QuizResultActivity.class));
+        // TODO add high score activity.
     }
 
     public Map getActivities() {

@@ -6,16 +6,25 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_standard">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvGameOverFeedback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/large_text" />
+            android:layout_margin="@dimen/margin_standard"
+            android:textSize="@dimen/medium_text" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnViewHighScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_standard"
+        android:layout_marginEnd="@dimen/margin_standard"
+        android:layout_marginStart="@dimen/margin_standard"
+        android:text="@string/view_high_score" />
 
     <ListView
         android:id="@+id/lvQuestions"
