@@ -1,15 +1,8 @@
-package sw.app2d2.quiz.handlers;
+package sw.app2d2.quiz.questions;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import sw.app2d2.quiz.questions.FirstWord;
-import sw.app2d2.quiz.questions.Leia;
-import sw.app2d2.quiz.questions.Question;
-import sw.app2d2.quiz.questions.ReturnOfTheJedi;
-import sw.app2d2.quiz.questions.StarWarsReleaseDate;
-import sw.app2d2.quiz.questions.StormTrooperWeapon;
 
 /**
  * Handles the questions classes.

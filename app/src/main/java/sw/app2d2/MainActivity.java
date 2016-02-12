@@ -17,6 +17,7 @@ import sw.app2d2.data.ForceValueData;
 import sw.app2d2.forcemeter.ForceMeterActivity;
 import sw.app2d2.quiz.QuizNewGameActivity;
 import sw.app2d2.quiz.QuizResultActivity;
+import sw.app2d2.quiz.highscore.HighScoreActivity;
 import sw.app2d2.quotes.YodaQuotes;
 
 public class MainActivity extends Activity {
@@ -135,7 +136,7 @@ public class MainActivity extends Activity {
         activities.put("profiles", new Intent(this, CharacterActivity.class));
         activities.put("quiz", new Intent(this, QuizNewGameActivity.class));
         activities.put("quizResult", new Intent(this, QuizResultActivity.class));
-        // TODO add high score activity.
+        activities.put("highScore", new Intent(this, HighScoreActivity.class));
     }
 
     public Map getActivities() {

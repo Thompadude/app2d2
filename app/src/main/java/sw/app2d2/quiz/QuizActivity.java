@@ -14,8 +14,7 @@ import java.util.List;
 
 import sw.app2d2.MainActivity;
 import sw.app2d2.R;
-import sw.app2d2.quiz.handlers.QuestionHandler;
-import sw.app2d2.quiz.handlers.UserHandler;
+import sw.app2d2.quiz.questions.QuestionHandler;
 
 public class QuizActivity extends MainActivity {
 
@@ -27,7 +26,7 @@ public class QuizActivity extends MainActivity {
     private RadioGroup rgAnswers;
     private String answer;
     private TextView tvHeadline, tvQuestion;
-    private UserHandler user;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,7 @@ public class QuizActivity extends MainActivity {
 
         // Get the value from QuizNewGameActivity and set the user.
         Bundle bundle = getIntent().getExtras();
-        user = new UserHandler(bundle.getString("userName"));
+        user = new User(bundle.getString("userName"));
 
         // Welcome the user.
         tvHeadline = (TextView) findViewById(R.id.quizHeadline);
