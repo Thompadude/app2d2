@@ -9,19 +9,20 @@
         android:orientation="vertical">
 
         <TextView
-            android:text="@string/about"
             android:id="@+id/tvAbout"
-            android:textSize="@dimen/large_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_standard"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="@string/about"
+            android:textSize="@dimen/large_text" />
 
         <ImageView
-            android:layout_margin="@dimen/margin_standard"
-            android:layout_gravity="center"
+            android:id="@+id/ivAbout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_standard"
             android:src="@drawable/icon_stormtrooper" />
     </LinearLayout>
 </ScrollView>
