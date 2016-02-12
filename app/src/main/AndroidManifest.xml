@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".AboutActivity" />
-        <activity android:name=".forcemeter.ForceMeterActivity" />
+        <activity android:name=".forcemeter.ForceMeterActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".characters.CharacterActivity" />
         <activity android:name=".quiz.QuizNewGameActivity" />
         <activity android:name=".quiz.QuizActivity" />
