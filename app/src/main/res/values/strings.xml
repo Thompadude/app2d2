@@ -54,4 +54,6 @@
     <string name="correct">Correct</string>
     <string name="incorrect">Incorrect</string>
     <string name="quiz_feedback">Thanks for playing, %1$s!\nYou answered %2$d of the %3$d questions correct.</string>
+    <string name="game_over">Game over! Click view details button for more information.</string>
+    <string name="question_index">"Question: %1$d"</string>
 </resources>

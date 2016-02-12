@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
     private AlphaAnimation fadeInAnimation = new AlphaAnimation(0, 1);
     private AlphaAnimation fadeOutAnimation = new AlphaAnimation(1, 0);
     private Map activities;
-    private String quote;
+    private String quote, oldQuote;
     private TextView tvContentMain;
     private View thisView;
     private YodaQuotes yodaQuotes;
@@ -49,8 +49,14 @@ public class MainActivity extends Activity {
         });
     }
 
+    /**
+     * Generate a new random yoda quote. Never generates the same quote two times in a row.
+     */
     private void generateYodaQuote() {
-        quote = yodaQuotes.getRandomYodaQuote();
+        do {
+            quote = yodaQuotes.getRandomYodaQuote();
+        } while (quote.equals(oldQuote));
+        oldQuote = quote;
         tvContentMain.setText(quote);
         tvContentMain.startAnimation(getFadeInAnimation());
     }

@@ -39,7 +39,6 @@ public class QuizActivity extends MainActivity {
         Bundle bundle = getIntent().getExtras();
         user = new UserHandler(bundle.getString("userName"));
 
-        // TODO remove this message when game starts.
         // Welcome the user.
         tvHeadline = (TextView) findViewById(R.id.quizHeadline);
         tvHeadline.setText(String.format(getResources().getString(R.string.quiz_headline), user.getUserName()));
@@ -57,6 +56,8 @@ public class QuizActivity extends MainActivity {
             @Override
             public void onClick(View v) {
                 if (!isGameOver) {
+                    tvHeadline.setText(String.format(getResources().getString(R.string.question_index), (questionIndex + 2)));
+
                     // Get answer from the user.
                     rbAnswer = (RadioButton) findViewById(rgAnswers.getCheckedRadioButtonId());
 
@@ -71,8 +72,13 @@ public class QuizActivity extends MainActivity {
                         rgAnswers.clearCheck();
                     }
                 }
-
                 if (isGameOver) {
+                    tvHeadline.setText(R.string.game_over);
+
+                    // Hide unnecessary elements.
+                    tvQuestion.setVisibility(View.GONE);
+                    rgAnswers.setVisibility(View.GONE);
+
                     btnSubmit.setEnabled(false);
                     Button btnResult = (Button) findViewById(R.id.btnResult);
                     btnResult.setEnabled(true);
