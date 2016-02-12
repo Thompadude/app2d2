@@ -19,7 +19,7 @@ public class ProfilePicHandler {
             case "Anakin Skywalker":
                 return R.drawable.icon_anakin;
             case "R2-D2":
-                return R.drawable.icon_r2d2_2;
+                return R.drawable.icon_r2d2;
             case "C-3PO":
                 return R.drawable.icon_c3po;
             case "Leia Organa":
