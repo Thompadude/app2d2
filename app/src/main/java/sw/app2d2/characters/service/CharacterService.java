@@ -1,4 +1,4 @@
-package sw.app2d2.characters.json;
+package sw.app2d2.characters.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import sw.app2d2.characters.Character;
-import sw.app2d2.characters.handlers.CharacterUrlHandler;
+import sw.app2d2.characters.characterhandlers.CharacterUrlHandler;
 
 /**
  * Handles communication with Swapi -- a Star Wars API.

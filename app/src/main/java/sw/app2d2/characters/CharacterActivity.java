@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import sw.app2d2.MainActivity;
 import sw.app2d2.R;
-import sw.app2d2.characters.handlers.OnItemSelectedHandler;
-import sw.app2d2.characters.handlers.ProfilePicHandler;
-import sw.app2d2.characters.json.CharacterService;
-import sw.app2d2.characters.json.CharacterServiceCallback;
+import sw.app2d2.characters.characterhandlers.OnItemSelectedHandler;
+import sw.app2d2.characters.characterhandlers.ProfilePicHandler;
+import sw.app2d2.characters.service.CharacterService;
+import sw.app2d2.characters.service.CharacterServiceCallback;
 
 /**
  * Present various characters from the Star Wars universe.

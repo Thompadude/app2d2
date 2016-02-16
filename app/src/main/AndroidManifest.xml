@@ -26,7 +26,7 @@
         <activity android:name=".quiz.QuizActivity" />
 
         <service
-            android:name=".characters.json.CharacterService"
+            android:name=".characters.service.CharacterService"
             android:enabled="true"
             android:exported="true" />
 

@@ -5,19 +5,19 @@ package sw.app2d2.forcemeter;
  */
 public class ForceValue {
 
-    private float forceValue;
-    private boolean isMeasured = false;
+    private static float forceValue;
+    private static boolean isMeasured = false;
 
-    public float getForceValue() {
+    public static float getForceValue() {
         return forceValue;
     }
 
-    public void setForceValue(float forceValue) {
-        this.forceValue = forceValue;
-        this.isMeasured = true;
+    public static void setForceValue(float forceValue) {
+        ForceValue.forceValue = forceValue;
+        isMeasured = true;
     }
 
-    public boolean isMeasured() {
+    public static boolean isMeasured() {
         return isMeasured;
     }
 

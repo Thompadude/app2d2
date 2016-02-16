@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import sw.app2d2.characters.CharacterActivity;
-import sw.app2d2.data.ForceValueData;
 import sw.app2d2.forcemeter.ForceMeterActivity;
+import sw.app2d2.forcemeter.ForceValue;
 import sw.app2d2.quiz.QuizNewGameActivity;
 import sw.app2d2.quiz.QuizResultActivity;
 import sw.app2d2.quiz.highscore.HighScoreActivity;
@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
     private AlphaAnimation fadeInAnimation = new AlphaAnimation(0, 1);
     private AlphaAnimation fadeOutAnimation = new AlphaAnimation(1, 0);
     private Map activities;
-    private String quote, oldQuote;
+    private String quote;
     private TextView tvContentMain;
     private View thisView;
     private YodaQuotes yodaQuotes;
@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
     }
 
     private void setYodaQuote() {
-        quote = yodaQuotes.generateYodaQuote(oldQuote);
+        quote = yodaQuotes.generateYodaQuote(quote);
         tvContentMain.setText(quote);
         tvContentMain.startAnimation(getFadeInAnimation());
     }
@@ -163,8 +163,8 @@ public class MainActivity extends Activity {
      * Sets theme depending on the user's force value -- but only if it has been measured.
      */
     public void setTheme() {
-        if (ForceValueData.getForceValueData().isMeasured()) {
-            if (ForceValueData.getForceValueData().getForceValue() < 100) {
+        if (ForceValue.isMeasured()) {
+            if (ForceValue.getForceValue() < 100) {
                 setTheme(R.style.DarkSideTheme);
             } else {
                 setTheme(R.style.LightSideTheme);

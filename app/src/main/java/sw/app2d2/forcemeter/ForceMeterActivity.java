@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import sw.app2d2.MainActivity;
 import sw.app2d2.R;
-import sw.app2d2.data.ForceValueData;
 
 public class ForceMeterActivity extends MainActivity implements SensorEventListener {
 
@@ -39,7 +38,7 @@ public class ForceMeterActivity extends MainActivity implements SensorEventListe
     @Override
     public void onSensorChanged(SensorEvent event) {
         // Get the value from the light sensor. Set the client's force value.
-        ForceValueData.getForceValueData().setForceValue(event.values[0]);
+        ForceValue.setForceValue(event.values[0]);
     }
 
     @Override
@@ -78,7 +77,7 @@ public class ForceMeterActivity extends MainActivity implements SensorEventListe
      */
     public void animateBackground() {
         setThisView(this.findViewById(android.R.id.content));
-        if (ForceValueData.getForceValueData().getForceValue() < 100) {
+        if (ForceValue.getForceValue() < 100) {
             tvForceFeedback.setText(R.string.content_forcemeter_dark);
             tvForceFeedback.setTextColor(getResources().getColor(R.color.white));
 
@@ -93,8 +92,8 @@ public class ForceMeterActivity extends MainActivity implements SensorEventListe
 
             getThisView().setBackgroundColor(getResources().getColor(R.color.bg_light_side));
         }
-            ivForceMeterImg.startAnimation(getFadeInAnimation());
-            getThisView().startAnimation(getFadeInAnimation());
+        ivForceMeterImg.startAnimation(getFadeInAnimation());
+        getThisView().startAnimation(getFadeInAnimation());
     }
 
     /**

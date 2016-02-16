@@ -1,4 +1,4 @@
-package sw.app2d2.characters.json;
+package sw.app2d2.characters.service;
 
 import sw.app2d2.characters.Character;
 

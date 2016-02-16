@@ -61,5 +61,5 @@
     <string name="view_high_score">View High Score</string>
     <string name="player_name">%1$d. %2$s</string>
     <string name="player_score">Score: %1$d</string>
-    <string name="players_top10">Top10 Quiz Players</string>
+    <string name="players_top10">Top 10 Quiz Players</string>
 </resources>
