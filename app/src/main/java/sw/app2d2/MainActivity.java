@@ -24,8 +24,8 @@ public class MainActivity extends Activity {
 
     private AlphaAnimation fadeInAnimation = new AlphaAnimation(0, 1);
     private AlphaAnimation fadeOutAnimation = new AlphaAnimation(1, 0);
-    private Map activities;
-    private String quote;
+    private Map<String, Intent> activities;
+    private String quote, oldQuote;
     private TextView tvContentMain;
     private View thisView;
     private YodaQuotes yodaQuotes;
@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
     }
 
     private void setYodaQuote() {
-        quote = yodaQuotes.generateYodaQuote(quote);
+        quote = yodaQuotes.generateYodaQuote(oldQuote);
         tvContentMain.setText(quote);
         tvContentMain.startAnimation(getFadeInAnimation());
     }
@@ -129,7 +129,7 @@ public class MainActivity extends Activity {
      * Set all the activities used throughout the application.
      */
     public void setActivities() {
-        activities = new HashMap();
+        activities = new HashMap<>();
         activities.put("home", new Intent(this, MainActivity.class));
         activities.put("about", new Intent(this, AboutActivity.class));
         activities.put("lightDarkSideMeter", new Intent(this, ForceMeterActivity.class));
