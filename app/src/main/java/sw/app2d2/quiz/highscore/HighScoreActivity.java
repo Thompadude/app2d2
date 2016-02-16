@@ -36,8 +36,8 @@ public class HighScoreActivity extends MainActivity {
         }
 
         while (result.moveToNext()) {
-            String userName = result.getString(0);
-            int userScore = result.getInt(1);
+            String userName = result.getString(1);
+            int userScore = result.getInt(2);
             user = new User(userName);
             user.setScore(userScore);
             highScoreAdapter.add(user);

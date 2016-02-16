@@ -6,6 +6,8 @@
     <string name="action_forcemeter">Force Meter</string>
     <string name="action_profiles">Character Profiles</string>
     <string name="action_quiz">Quiz</string>
+    <string name="action_quiz_new_game">New Game</string>
+    <string name="action_view_high_score">High Score</string>
     <string name="content_forcemeter">Checking which side of the force you are drawn to.</string>
     <string name="content_forcemeter_dark">You are drawn to the dark side! App set to dark side theme.</string>
     <string name="content_forcemeter_light">You are drawn to the light side! App set to light side theme.</string>
@@ -57,4 +59,7 @@
     <string name="game_over">Game over! Click view details button for more information.</string>
     <string name="question_index">"Question: %1$d"</string>
     <string name="view_high_score">View High Score</string>
+    <string name="player_name">%1$d. %2$s</string>
+    <string name="player_score">Score: %1$d</string>
+    <string name="players_top10">Top10 Quiz Players</string>
 </resources>

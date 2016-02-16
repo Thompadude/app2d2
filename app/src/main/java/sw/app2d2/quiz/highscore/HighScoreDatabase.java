@@ -44,18 +44,17 @@ public class HighScoreDatabase extends SQLiteOpenHelper {
      */
     public Cursor getAllData() {
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor result = database.rawQuery("select * from " + TABLE_NAME, null);
+        Cursor result = database.rawQuery("select * from " + TABLE_NAME + " order by SCORE desc limit 10", null);
         return result;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT, SCORE INT)");
+        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT, SCORE INTEGER)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Fulkod?
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }

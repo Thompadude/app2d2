@@ -12,8 +12,15 @@
     <item
         android:id="@+id/action_profiles"
         android:title="@string/action_profiles" />
-    <item
-        android:id="@+id/action_quiz"
-        android:title="@string/action_quiz" />
 
+    <item android:title="@string/action_quiz">
+        <menu>
+            <item
+                android:id="@+id/action_quiz"
+                android:title="@string/action_quiz_new_game" />
+            <item
+                android:id="@+id/action_quiz_high_score"
+                android:title="@string/action_view_high_score" />
+        </menu>
+    </item>
 </menu>

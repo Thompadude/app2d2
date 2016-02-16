@@ -15,13 +15,15 @@ import sw.app2d2.quiz.User;
 
 public class HighScoreAdapter extends ArrayAdapter<User> {
 
-    private User currentUser;
+    private Context context;
     private List<User> users = new ArrayList<>();
     private TextView tvUserName;
     private TextView tvHighScore;
+    private User currentUser;
 
     public HighScoreAdapter(Context context, int resource) {
         super(context, resource);
+        this.context = context;
     }
 
     @Override
@@ -37,14 +39,14 @@ public class HighScoreAdapter extends ArrayAdapter<User> {
         tvUserName = (TextView) convertView.findViewById(R.id.tvUserName);
         tvHighScore = (TextView) convertView.findViewById(R.id.tvUserHighScore);
 
-        setTextViewsText();
+        setTextViewsText(position);
 
         return convertView;
     }
 
-    private void setTextViewsText() {
-        tvUserName.setText(currentUser.getUserName());
-        tvHighScore.setText(String.valueOf(currentUser.getScore()));
+    private void setTextViewsText(int position) {
+        tvUserName.setText(String.format(context.getString(R.string.player_name), (position+1), currentUser.getUserName()));
+        tvHighScore.setText(String.format(context.getString(R.string.player_score), currentUser.getScore()));
     }
 
     @Override

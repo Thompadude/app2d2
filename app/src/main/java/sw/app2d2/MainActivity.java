@@ -91,6 +91,9 @@ public class MainActivity extends Activity {
             case R.id.action_quiz:
                 startActivity((Intent) getActivities().get("quiz"));
                 return true;
+            case R.id.action_quiz_high_score:
+                startActivity((Intent) getActivities().get("highScore"));
+                return true;
 
         }
         return super.onOptionsItemSelected(item);
@@ -115,12 +118,14 @@ public class MainActivity extends Activity {
                 menu.getItem(3).setVisible(false);
                 break;
             case "sw.app2d2.quiz.QuizNewGameActivity":
-                menu.getItem(4).setVisible(false);
+                menu.getItem(4).getSubMenu().getItem(0).setVisible(false);
                 break;
             case "sw.app2d2.quiz.QuizActivity":
                 menu.getItem(4).setVisible(false);
                 break;
-
+            case "sw.app2d2.quiz.highscore.HighScoreActivity":
+                menu.getItem(4).getSubMenu().getItem(1).setVisible(false);
+                break;
         }
         return super.onPrepareOptionsMenu(menu);
     }

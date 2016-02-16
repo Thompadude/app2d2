@@ -72,4 +72,9 @@ public class QuizResultActivity extends MainActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        // Prevents duplicate high score saves.
+    }
+
 }
