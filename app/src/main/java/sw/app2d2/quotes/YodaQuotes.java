@@ -28,6 +28,25 @@ public class YodaQuotes {
         yodaQuotes.add("\"Do. Or do not. There is no try.\"");
     }
 
+    /**
+     * Generate a new random Yoda quote and never generates the same quote twice in a row.
+     *
+     * @param oldQuote the old quote to compare the new quote with.
+     * @return the new quote.
+     */
+    public String generateYodaQuote(String oldQuote) {
+        String quote;
+        do {
+            quote = getRandomYodaQuote();
+        } while (quote.equals(oldQuote));
+        return quote;
+    }
+
+    /**
+     * Get a random Yoda quote from the yodaQuotes List.
+     *
+     * @return the random yoda quote.
+     */
     public String getRandomYodaQuote() {
         random = new Random();
         int randomIndex = random.nextInt(yodaQuotes.size());
@@ -35,4 +54,3 @@ public class YodaQuotes {
     }
 
 }
-

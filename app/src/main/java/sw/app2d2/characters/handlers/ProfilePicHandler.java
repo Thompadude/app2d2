@@ -5,7 +5,7 @@ import sw.app2d2.R;
 public class ProfilePicHandler {
 
     /**
-     * Handles the picture to be displayed depending on what character has been choosen.
+     * Handles the picture to be displayed depending on what character has been chosen.
      *
      * @param character the character to display a picture of.
      * @return the drawable to display.

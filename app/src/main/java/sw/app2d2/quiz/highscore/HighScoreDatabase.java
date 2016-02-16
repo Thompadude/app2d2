@@ -38,7 +38,7 @@ public class HighScoreDatabase extends SQLiteOpenHelper {
     }
 
     /**
-     * Fetch all data from the high score table.
+     * Fetch all data from the high score table. Sort in descending order by score. Limit the query to 10 rows.
      *
      * @return the result of the query.
      */

@@ -33,6 +33,7 @@ public class QuizNewGameActivity extends MainActivity {
                     newQuiz.putExtra("userName", userName);
                     startActivity(newQuiz);
                 } else {
+                    // Prompt the user to fill in a user name if edit text is empty.
                     Toast.makeText(getApplicationContext(), "Fill in a user name", Toast.LENGTH_SHORT).show();
                 }
             }

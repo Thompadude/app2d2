@@ -18,8 +18,6 @@ import sw.app2d2.quiz.questions.QuestionHandler;
 public class QuizResultActivity extends MainActivity {
 
     private ArrayAdapter<Question> questionAdapter;
-    private Button btnViewHighScore;
-    private HighScoreDatabase highScoreDatabase;
     private QuestionHandler questionHandler;
     private User user;
 
@@ -46,7 +44,7 @@ public class QuizResultActivity extends MainActivity {
         ListView lvQuestions = (ListView) findViewById(R.id.lvQuestions);
         lvQuestions.setAdapter(questionAdapter);
 
-        btnViewHighScore = (Button) findViewById(R.id.btnViewHighScore);
+        Button btnViewHighScore = (Button) findViewById(R.id.btnViewHighScore);
         btnViewHighScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,8 +54,11 @@ public class QuizResultActivity extends MainActivity {
         });
     }
 
+    /**
+     * Saves high score to the SQLite database.
+     */
     private void saveHighScore() {
-        highScoreDatabase = new HighScoreDatabase(getApplicationContext());
+        HighScoreDatabase highScoreDatabase = new HighScoreDatabase(getApplicationContext());
         boolean dataSuccessfullyAdded = highScoreDatabase.insertData(user.getUserName(), user.getScore());
         if (dataSuccessfullyAdded) {
             Toast.makeText(getApplicationContext(), "High Score Saved", Toast.LENGTH_SHORT).show();
@@ -66,6 +67,9 @@ public class QuizResultActivity extends MainActivity {
         }
     }
 
+    /**
+     * Populates the question result feedback adapter.
+     */
     private void populateAdapter() {
         for (int i = 0; i < questionHandler.getQuestions().size(); i++) {
             questionAdapter.add(questionHandler.getQuestions().get(i));

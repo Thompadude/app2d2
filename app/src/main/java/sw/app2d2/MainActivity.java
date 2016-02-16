@@ -41,23 +41,19 @@ public class MainActivity extends Activity {
         yodaQuotes = new YodaQuotes();
 
         tvContentMain = (TextView) findViewById(R.id.content_main);
-        generateYodaQuote();
+        setYodaQuote();
+
+        // Set a new Yoda quote when clicking on the quote.
         tvContentMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                generateYodaQuote();
+                setYodaQuote();
             }
         });
     }
 
-    /**
-     * Generate a new random yoda quote. Never generates the same quote twice.
-     */
-    private void generateYodaQuote() {
-        do {
-            quote = yodaQuotes.getRandomYodaQuote();
-        } while (quote.equals(oldQuote));
-        oldQuote = quote;
+    private void setYodaQuote() {
+        quote = yodaQuotes.generateYodaQuote(oldQuote);
         tvContentMain.setText(quote);
         tvContentMain.startAnimation(getFadeInAnimation());
     }
@@ -94,7 +90,6 @@ public class MainActivity extends Activity {
             case R.id.action_quiz_high_score:
                 startActivity((Intent) getActivities().get("highScore"));
                 return true;
-
         }
         return super.onOptionsItemSelected(item);
     }

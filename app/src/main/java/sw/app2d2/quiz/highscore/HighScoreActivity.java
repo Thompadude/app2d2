@@ -3,6 +3,7 @@ package sw.app2d2.quiz.highscore;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import sw.app2d2.MainActivity;
 import sw.app2d2.R;
@@ -32,7 +33,7 @@ public class HighScoreActivity extends MainActivity {
         Cursor result = highScoreDatabase.getAllData();
 
         if (result.getCount() < 1) {
-            // TODO error handling here!
+            Toast.makeText(getApplicationContext(), "Error loading high score from database.", Toast.LENGTH_SHORT).show();
         }
 
         while (result.moveToNext()) {

@@ -41,7 +41,7 @@ public class CharacterService extends Service {
 
     /**
      * Fetch a character from the API. On success -- get the url to the character's home planet
-     * and also fetch that from the same API.
+     * and also fetch THAT from the same API.
      *
      * @param characterRequest is the name of the character to fetch information about.
      */

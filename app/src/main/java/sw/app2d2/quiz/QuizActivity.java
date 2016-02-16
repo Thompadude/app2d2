@@ -97,6 +97,11 @@ public class QuizActivity extends MainActivity {
         });
     }
 
+    /**
+     * Verify that the user selected an answer.
+     *
+     * @return false if no answer alternative is selected, else true.
+     */
     private boolean radioButtonIsChecked() {
         if (rgAnswers.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "Please pick an answer.", Toast.LENGTH_SHORT).show();
@@ -131,7 +136,7 @@ public class QuizActivity extends MainActivity {
     }
 
     /**
-     * Gets the answer from the user and handles it.
+     * Gets the answer from the user and handles it. Presents a TOAST as feedback.
      *
      * @param isCorrect is true if the user provided the correct answer.
      */

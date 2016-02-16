@@ -2,6 +2,12 @@ package sw.app2d2.characters.handlers;
 
 public class CharacterUrlHandler {
 
+    /**
+     * Handles the url endpoint to the Swapi API.
+     *
+     * @param character the character to present information about.
+     * @return the url endpoint to the specific character database.
+     */
     public String getCharacterUrl(String character) {
         switch (character) {
             case "Luke Skywalker":

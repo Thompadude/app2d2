@@ -13,6 +13,10 @@ import java.util.List;
 import sw.app2d2.R;
 import sw.app2d2.quiz.questions.Question;
 
+/**
+ * Handles the presentation of the quiz result. In the view the user gets feedback
+ * about what questions was answered correctly and total score.
+ */
 public class QuizResultAdapter extends ArrayAdapter<Question> {
 
     private Context context;
@@ -38,7 +42,6 @@ public class QuizResultAdapter extends ArrayAdapter<Question> {
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         if (convertView == null) {
             // Get the layout inflater service from this context.
             LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

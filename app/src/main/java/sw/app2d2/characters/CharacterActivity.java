@@ -36,6 +36,7 @@ public class CharacterActivity extends MainActivity implements CharacterServiceC
         ivProfilePic = (ImageView) findViewById(R.id.ivProfilePic);
         tvProfileContent = (TextView) findViewById(R.id.tvProfileContent);
 
+        // Create a spinner to handle the user's character choice.
         Spinner spinnerCharacters = (Spinner) findViewById(R.id.spinnerCharacters);
         ArrayAdapter<CharSequence> spinnerCharAdapter = ArrayAdapter.createFromResource(this, R.array.array_characters, R.layout.spinner);
         spinnerCharacters.setAdapter(spinnerCharAdapter);
@@ -56,7 +57,7 @@ public class CharacterActivity extends MainActivity implements CharacterServiceC
     }
 
     private void setCharacter() {
-        toogleProgressDialog(true);
+        toggleProgressDialog(true);
         CharacterService characterService = new CharacterService(this);
         characterService.fetchCharacter(characterName);
     }
@@ -93,7 +94,7 @@ public class CharacterActivity extends MainActivity implements CharacterServiceC
         ivProfilePic.setImageResource(profilePicHandler.getCharacterProfilePic(characterName));
     }
 
-    private void toogleProgressDialog(boolean show) {
+    private void toggleProgressDialog(boolean show) {
         if (show) {
             progressDialog = new ProgressDialog(this);
             progressDialog.setMessage("Fetching data from SWAPI");
@@ -103,18 +104,17 @@ public class CharacterActivity extends MainActivity implements CharacterServiceC
                 progressDialog.hide();
             }
         }
-
     }
 
     @Override
     public void serviceSuccess(Character character) {
         setTvProfileContent(character);
-        toogleProgressDialog(false);
+        toggleProgressDialog(false);
     }
 
     @Override
     public void serviceFailure() {
-        toogleProgressDialog(false);
+        toggleProgressDialog(false);
     }
 
 }

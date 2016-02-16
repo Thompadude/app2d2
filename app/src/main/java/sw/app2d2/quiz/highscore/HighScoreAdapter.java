@@ -26,16 +26,37 @@ public class HighScoreAdapter extends ArrayAdapter<User> {
         this.context = context;
     }
 
+    /**
+     * From developer.android.com:
+     * Get a View that displays the data at the specified position in the data set.
+     * You can either create a View manually or inflate it from an XML layout file.
+     * When the View is inflated, the parent View (GridView, ListView...) will apply
+     * default layout parameters unless you use inflate(int, android.view.ViewGroup, boolean)
+     * to specify a root view and to prevent attachment to the root.
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
+            // Get the layout inflater service from this context.
             LayoutInflater layoutInflater = (LayoutInflater) this.getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            /*
+                Inflate the view with list_high_score.xml,
+                provide a set of layout params (use same as parent),
+                and create the correct subclass of LayoutParams.
+
+                When last param is set to false the layout is inflated
+                but will not be attached to any other layout. Although,
+                it will use the parent params when created.
+            */
             convertView = layoutInflater.inflate(R.layout.list_high_score, parent, false);
         }
 
+        // Get the specific position in the question list.
         currentUser = users.get(position);
 
+        // Get the Text Views from list_high_score.xml
         tvUserName = (TextView) convertView.findViewById(R.id.tvUserName);
         tvHighScore = (TextView) convertView.findViewById(R.id.tvUserHighScore);
 
@@ -45,8 +66,11 @@ public class HighScoreAdapter extends ArrayAdapter<User> {
     }
 
     private void setTextViewsText(int position) {
-        tvUserName.setText(String.format(context.getString(R.string.player_name), (position+1), currentUser.getUserName()));
-        tvHighScore.setText(String.format(context.getString(R.string.player_score), currentUser.getScore()));
+        String userName = String.format(context.getString(R.string.player_name), (position + 1), currentUser.getUserName());
+        tvUserName.setText(userName);
+
+        String userScore = String.format(context.getString(R.string.player_score), currentUser.getScore());
+        tvHighScore.setText(userScore);
     }
 
     @Override

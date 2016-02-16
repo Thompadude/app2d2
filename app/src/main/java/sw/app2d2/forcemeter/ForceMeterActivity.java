@@ -98,7 +98,7 @@ public class ForceMeterActivity extends MainActivity implements SensorEventListe
     }
 
     /**
-     * Was forced into writing this method -- was getting errors in run() method in onResume()
+     * Forced into writing this method -- was getting errors in run() method in onResume()
      * when trying to unregister with the "normal" method.
      */
     private void unregisterListener() {
