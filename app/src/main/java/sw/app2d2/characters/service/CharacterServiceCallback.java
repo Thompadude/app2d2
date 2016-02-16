@@ -6,6 +6,6 @@ public interface CharacterServiceCallback {
 
     void serviceSuccess(Character character);
 
-    void serviceFailure();
+    void serviceFailure(Exception error);
 
 }

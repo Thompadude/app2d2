@@ -12,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -24,13 +23,14 @@ import sw.app2d2.characters.characterhandlers.CharacterUrlHandler;
  */
 public class CharacterService extends Service {
 
-    BufferedReader bufferedReader;
-    Character character;
-    CharacterUrlHandler characterUrlHandler;
-    CharacterServiceCallback characterServiceCallback;
-    JSONObject characterData, characterHomeWorldData;
-    String characterName, characterHomeWorld, characterHomeWorldUrl;
-    StringBuilder response;
+    private BufferedReader bufferedReader;
+    private Character character;
+    private CharacterUrlHandler characterUrlHandler;
+    private CharacterServiceCallback characterServiceCallback;
+    private Exception error;
+    private JSONObject characterData, characterHomeWorldData;
+    private String characterName, characterHomeWorld, characterHomeWorldUrl;
+    private StringBuilder response;
 
     /**
      * @param characterServiceCallback is the interface which handles the success and failures of the service.
@@ -61,7 +61,7 @@ public class CharacterService extends Service {
             @Override
             protected void onPostExecute(String s) {
                 if (s == null) {
-                    // TODO add error handling
+
                     return;
                 }
 
@@ -71,7 +71,7 @@ public class CharacterService extends Service {
                     characterHomeWorldUrl = characterData.optString("homeworld");
                     fetchCharacterHomeWorld();
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    error = e;
                 }
             }
         }.execute();
@@ -108,8 +108,8 @@ public class CharacterService extends Service {
 
                 @Override
                 protected void onPostExecute(String s) {
-                    if (s == null) {
-                        // TODO add error handling
+                    if (s == null & error != null) {
+                        characterServiceCallback.serviceFailure(error);
                         return;
                     }
 
@@ -119,7 +119,7 @@ public class CharacterService extends Service {
                         // All character data fetching successful!
                         characterServiceCallback.serviceSuccess(createCharacter());
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        error = e;
                     }
                 }
             }.execute();
@@ -129,14 +129,18 @@ public class CharacterService extends Service {
     private void setResponse() {
         response = new StringBuilder();
         String line;
-        try {
-            while ((line = bufferedReader.readLine()) != null) {
-                response.append(line);
+        if (bufferedReader != null) {
+            try {
+                while ((line = bufferedReader.readLine()) != null) {
+                    response.append(line);
+                }
+            } catch (IOException e) {
+                error = e;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            response.toString();
+        } else {
+            characterServiceCallback.serviceFailure(error);
         }
-        response.toString();
     }
 
     private void setBufferedReader(String url) {
@@ -145,10 +149,8 @@ public class CharacterService extends Service {
             URLConnection urlConnection = characterUrl.openConnection();
             InputStream inputStream = urlConnection.getInputStream();
             bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            error = e;
         }
     }
 

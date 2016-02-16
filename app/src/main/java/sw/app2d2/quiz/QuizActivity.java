@@ -14,7 +14,6 @@ import java.util.List;
 
 import sw.app2d2.MainActivity;
 import sw.app2d2.R;
-import sw.app2d2.quiz.questions.QuestionHandler;
 
 public class QuizActivity extends MainActivity {
 

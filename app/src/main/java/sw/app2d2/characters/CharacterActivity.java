@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import sw.app2d2.MainActivity;
 import sw.app2d2.R;
@@ -113,8 +114,14 @@ public class CharacterActivity extends MainActivity implements CharacterServiceC
     }
 
     @Override
-    public void serviceFailure() {
-        toggleProgressDialog(false);
+    public void serviceFailure(final Exception error) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                toggleProgressDialog(false);
+                Toast.makeText(getApplicationContext(), "ERROR: " + error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }
