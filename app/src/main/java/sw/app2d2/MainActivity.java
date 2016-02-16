@@ -1,7 +1,12 @@
 package sw.app2d2;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,12 +25,17 @@ import sw.app2d2.quiz.QuizResultActivity;
 import sw.app2d2.quiz.highscore.HighScoreActivity;
 import sw.app2d2.quotes.YodaQuotes;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements SensorEventListener {
 
     private AlphaAnimation fadeInAnimation = new AlphaAnimation(0, 1);
     private AlphaAnimation fadeOutAnimation = new AlphaAnimation(1, 0);
+    private float accelerometer;
+    private float accelerometerCurrent;
+    private float accelerometerLast;
     private Map<String, Intent> activities;
-    private String quote, oldQuote;
+    private Sensor sensor;
+    private SensorManager sensorManager;
+    private String quote;
     private TextView tvContentMain;
     private View thisView;
     private YodaQuotes yodaQuotes;
@@ -38,6 +48,14 @@ public class MainActivity extends Activity {
         setActivities();
         setFadeDurations(1000);
 
+        // Get access to the accelerometer sensor and set float values for later use.
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        accelerometer = 0.00f;
+        accelerometerCurrent = SensorManager.GRAVITY_EARTH;
+        accelerometerLast = SensorManager.GRAVITY_EARTH;
+
+        // Get access to Yoda quotes!
         yodaQuotes = new YodaQuotes();
 
         tvContentMain = (TextView) findViewById(R.id.content_main);
@@ -53,7 +71,7 @@ public class MainActivity extends Activity {
     }
 
     private void setYodaQuote() {
-        quote = yodaQuotes.generateYodaQuote(oldQuote);
+        quote = yodaQuotes.generateYodaQuote(quote);
         tvContentMain.setText(quote);
         tvContentMain.startAnimation(getFadeInAnimation());
     }
@@ -61,6 +79,13 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(this);
     }
 
     @Override
@@ -180,4 +205,27 @@ public class MainActivity extends Activity {
         fadeOutAnimation.setDuration(duration);
     }
 
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        // Get accelerometer values.
+        float x = event.values[0];
+        float y = event.values[1];
+        float z = event.values[2];
+
+        // Do magic with all values. Keep the variable "accelerometer" updated.
+        accelerometer = accelerometerCurrent;
+        accelerometerCurrent = (float) Math.sqrt((double) (x * x + y * y + z * z));
+        float delta = accelerometerCurrent - accelerometerLast;
+        accelerometer = accelerometer * 0.9f + delta;
+
+        // If phone is shaken -- set new Yoda quote.
+        if (accelerometer > 10) {
+            setYodaQuote();
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
 }

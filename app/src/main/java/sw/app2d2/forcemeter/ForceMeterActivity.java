@@ -2,7 +2,6 @@ package sw.app2d2.forcemeter;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 import sw.app2d2.MainActivity;
 import sw.app2d2.R;
 
-public class ForceMeterActivity extends MainActivity implements SensorEventListener {
+public class ForceMeterActivity extends MainActivity {
 
     private ImageView ivForceMeterImg;
     private SensorManager sensorManager;
@@ -54,7 +53,7 @@ public class ForceMeterActivity extends MainActivity implements SensorEventListe
     @Override
     protected void onResume() {
         super.onResume();
-        sensorManager.registerListener(this, theForceSensor, sensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this, theForceSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
         // Unregister the sensor after 5 seconds.
         Handler handler = new Handler();
