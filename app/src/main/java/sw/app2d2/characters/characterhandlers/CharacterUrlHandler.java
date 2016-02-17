@@ -9,6 +9,10 @@ public class CharacterUrlHandler {
      * @return the url endpoint to the specific character database.
      */
     public String getCharacterUrl(String character) {
+        if (character == null) {
+            return null;
+        }
+
         switch (character) {
             case "Luke Skywalker":
                 return "http://swapi.co/api/people/1/";

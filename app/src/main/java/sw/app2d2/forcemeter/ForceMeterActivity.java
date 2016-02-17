@@ -36,7 +36,7 @@ public class ForceMeterActivity extends MainActivity {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        // Get the value from the light sensor. Set the client's force value.
+        // Get the value from the light sensor. Set the user's force value.
         ForceValue.setForceValue(event.values[0]);
     }
 

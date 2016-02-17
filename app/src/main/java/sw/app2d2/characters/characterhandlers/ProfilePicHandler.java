@@ -11,6 +11,10 @@ public class ProfilePicHandler {
      * @return the drawable to display.
      */
     public int getCharacterProfilePic(String character) {
+        if (character == null) {
+            return R.drawable.icon_profilemissing;
+        }
+
         switch (character) {
             case "Luke Skywalker":
                 return R.drawable.icon_lukeskywalker;

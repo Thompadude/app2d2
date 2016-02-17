@@ -33,7 +33,7 @@ public class HighScoreActivity extends MainActivity {
         Cursor result = highScoreDatabase.getAllData();
 
         if (result.getCount() < 1) {
-            Toast.makeText(getApplicationContext(), "Error loading high score from database.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "No player scores registered.", Toast.LENGTH_SHORT).show();
         }
 
         while (result.moveToNext()) {
