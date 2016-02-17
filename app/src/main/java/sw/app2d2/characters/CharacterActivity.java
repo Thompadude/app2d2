@@ -119,7 +119,7 @@ public class CharacterActivity extends MainActivity implements CharacterServiceC
             @Override
             public void run() {
                 toggleProgressDialog(false);
-                Toast.makeText(getApplicationContext(), "ERROR: " + error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "ERROR: " + error.toString(), Toast.LENGTH_LONG).show();
             }
         });
     }

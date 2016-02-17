@@ -2,10 +2,7 @@ package sw.app2d2.characters.characterhandlers;
 
 import junit.framework.TestCase;
 
-/**
- * Testing with JUnit3
- * Make sure the correct URL is returned.
- */
+// JUnit3
 public class CharacterUrlHandlerTest extends TestCase {
 
     CharacterUrlHandler characterUrlHandler;

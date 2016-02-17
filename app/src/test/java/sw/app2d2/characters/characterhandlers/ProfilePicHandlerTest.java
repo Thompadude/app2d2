@@ -1,13 +1,15 @@
 package sw.app2d2.characters.characterhandlers;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import sw.app2d2.R;
 
-public class ProfilePicHandlerTest {
+// JUnit4
+public class ProfilePicHandlerTest extends TestCase {
 
     ProfilePicHandler profilePicHandler;
 
