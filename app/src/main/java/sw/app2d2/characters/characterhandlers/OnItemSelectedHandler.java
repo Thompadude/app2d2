@@ -1,11 +1,12 @@
 package sw.app2d2.characters.characterhandlers;
 
+/**
+ * Handles the choice from the dropdown menu in the character profile section.
+ */
 public class OnItemSelectedHandler {
 
     /**
-     * Handles the choice from the dropdown profile menu.
-     *
-     * @param profileMenuPos the index from the menu.
+     * @param profileMenuPos the index at the menu.
      * @return the character string to help identify what character the user want to display.
      */
     public String getStringCharacter(int profileMenuPos) {

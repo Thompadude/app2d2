@@ -67,7 +67,7 @@ public class QuizResultActivity extends MainActivity {
     }
 
     /**
-     * Populates the question result feedback adapter.
+     * Populates the question result feedback adapter. Presents the user with feedback about how the quiz went.
      */
     private void populateAdapter() {
         for (int i = 0; i < questionHandler.getQuestions().size(); i++) {

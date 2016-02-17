@@ -29,13 +29,18 @@ public class HighScoreActivity extends MainActivity {
         lvHighScore.setAdapter(highScoreAdapter);
     }
 
+    /**
+     * Get the database content and populate the high score adapter with it.
+     */
     private void populateAdapter() {
         Cursor result = highScoreDatabase.getAllData();
 
+        // If no content found in the database -- inform the user with a Toast.
         if (result.getCount() < 1) {
             Toast.makeText(getApplicationContext(), "No player scores registered.", Toast.LENGTH_SHORT).show();
         }
 
+        // Create users with the information provided by the database and populate the high score adapter with them.
         while (result.moveToNext()) {
             String userName = result.getString(1);
             int userScore = result.getInt(2);

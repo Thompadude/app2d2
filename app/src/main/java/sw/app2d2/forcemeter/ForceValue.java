@@ -17,6 +17,9 @@ public class ForceValue {
         isMeasured = true;
     }
 
+    /**
+     * @return true if the force value has been set once, else false.
+     */
     public static boolean isMeasured() {
         return isMeasured;
     }

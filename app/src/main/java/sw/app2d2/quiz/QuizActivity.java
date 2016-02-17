@@ -135,7 +135,7 @@ public class QuizActivity extends MainActivity {
     }
 
     /**
-     * Gets the answer from the user and handles it. Presents a TOAST as feedback.
+     * Gets the answer from the user and handles it. Presents a Toast as feedback.
      *
      * @param isCorrect is true if the user provided the correct answer.
      */

@@ -2,13 +2,16 @@ package sw.app2d2.characters.characterhandlers;
 
 import sw.app2d2.R;
 
+/**
+ * Handles the picture to be displayed depending on what character has been chosen.
+ */
 public class ProfilePicHandler {
 
     /**
-     * Handles the picture to be displayed depending on what character has been chosen.
+     * If no character are found a default "profile picture missing"-image will be displayed.
      *
      * @param character the character to display a picture of.
-     * @return the drawable to display.
+     * @return the identification of the drawable to display.
      */
     public int getCharacterProfilePic(String character) {
         if (character == null) {

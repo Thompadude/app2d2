@@ -19,7 +19,7 @@ import sw.app2d2.characters.service.CharacterService;
 import sw.app2d2.characters.service.CharacterServiceCallback;
 
 /**
- * Present various characters from the Star Wars universe.
+ * Present various characters in the view from the Star Wars universe.
  */
 public class CharacterActivity extends MainActivity implements CharacterServiceCallback {
 
@@ -57,6 +57,9 @@ public class CharacterActivity extends MainActivity implements CharacterServiceC
         });
     }
 
+    /**
+     * Set a character based on the user's choice in the dropdown-menu.
+     */
     private void setCharacter() {
         toggleProgressDialog(true);
         CharacterService characterService = new CharacterService(this);
@@ -84,8 +87,8 @@ public class CharacterActivity extends MainActivity implements CharacterServiceC
     }
 
     /**
-     * Set character profile pic depending on the character name.
-     * Adds an animation effect.
+     * Set the character profile picture depending on the character name.
+     * Presents it in the image view with the fade in effect.
      */
     private void setIvProfilePic() {
         setFadeDurations(2000);
@@ -95,6 +98,11 @@ public class CharacterActivity extends MainActivity implements CharacterServiceC
         ivProfilePic.setImageResource(profilePicHandler.getCharacterProfilePic(characterName));
     }
 
+    /**
+     * Toggle a progress dialog while fetching data from the Swapi API.
+     *
+     * @param show true if the progress dialog is to be visible, else false.
+     */
     private void toggleProgressDialog(boolean show) {
         if (show) {
             progressDialog = new ProgressDialog(this);
@@ -107,12 +115,22 @@ public class CharacterActivity extends MainActivity implements CharacterServiceC
         }
     }
 
+    /**
+     * On a successful service call populate the text view with content from the character.
+     *
+     * @param character is the response from the service call.
+     */
     @Override
     public void serviceSuccess(Character character) {
         setTvProfileContent(character);
         toggleProgressDialog(false);
     }
 
+    /**
+     * On a failed service call present the user with a toast containing the exception message.
+     *
+     * @param error is the captured exception from the failed service call.
+     */
     @Override
     public void serviceFailure(final Exception error) {
         runOnUiThread(new Runnable() {

@@ -60,8 +60,8 @@ public class CharacterService extends Service {
 
             @Override
             protected void onPostExecute(String s) {
-                if (s == null) {
-
+                if (s == null & error != null) {
+                    characterServiceCallback.serviceFailure(error);
                     return;
                 }
 
@@ -77,6 +77,11 @@ public class CharacterService extends Service {
         }.execute();
     }
 
+    /**
+     * Create character with the content from the responses.
+     *
+     * @return the created character.
+     */
     private Character createCharacter() {
         character = new Character(
                 characterName,
@@ -143,6 +148,9 @@ public class CharacterService extends Service {
         }
     }
 
+    /**
+     * @param url the url in String format retrieved from the CharacterUrlHandler.
+     */
     private void setBufferedReader(String url) {
         try {
             URL characterUrl = new URL(url);

@@ -1,14 +1,19 @@
 package sw.app2d2.characters.characterhandlers;
 
+/**
+ * Handles the url endpoint to the Swapi API character section.
+ */
 public class CharacterUrlHandler {
 
     /**
-     * Handles the url endpoint to the Swapi API.
+     * Get a url in String format based on the param character.
+     * If no character are found null will be returned.
      *
      * @param character the character to present information about.
      * @return the url endpoint to the specific character database.
      */
     public String getCharacterUrl(String character) {
+
         if (character == null) {
             return null;
         }

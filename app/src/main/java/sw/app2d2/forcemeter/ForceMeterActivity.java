@@ -67,6 +67,9 @@ public class ForceMeterActivity extends MainActivity {
         }, 5000);
     }
 
+    /**
+     * Override to allow the animateBackground method to set the theme instead.
+     */
     @Override
     public void setTheme() {
     }
