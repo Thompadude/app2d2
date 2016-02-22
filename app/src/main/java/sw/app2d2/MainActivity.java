@@ -8,6 +8,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,8 +53,8 @@ public class MainActivity extends Activity implements SensorEventListener {
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         accelerometer = 0.00f;
-        accelerometerCurrent = SensorManager.GRAVITY_EARTH;
-        accelerometerLast = SensorManager.GRAVITY_EARTH;
+        accelerometerCurrent = SensorManager.GRAVITY_DEATH_STAR_I;
+        accelerometerLast = SensorManager.GRAVITY_DEATH_STAR_I;
 
         // Get access to Yoda quotes!
         yodaQuotes = new YodaQuotes();
@@ -125,25 +126,25 @@ public class MainActivity extends Activity implements SensorEventListener {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         switch (getLocalClassName()) {
-            case "sw.app2d2.MainActivity":
+            case "MainActivity":
                 menu.getItem(0).setVisible(false);
                 break;
-            case "sw.app2d2.AboutActivity":
+            case "AboutActivity":
                 menu.getItem(1).setVisible(false);
                 break;
-            case "sw.app2d2.forcemeter.ForceMeterActivity":
+            case "forcemeter.ForceMeterActivity":
                 menu.getItem(2).setVisible(false);
                 break;
-            case "sw.app2d2.characters.CharacterActivity":
+            case "characters.CharacterActivity":
                 menu.getItem(3).setVisible(false);
                 break;
-            case "sw.app2d2.quiz.QuizNewGameActivity":
+            case "quiz.QuizNewGameActivity":
                 menu.getItem(4).getSubMenu().getItem(0).setVisible(false);
                 break;
-            case "sw.app2d2.quiz.QuizActivity":
+            case "quiz.QuizActivity":
                 menu.getItem(4).setVisible(false);
                 break;
-            case "sw.app2d2.quiz.highscore.HighScoreActivity":
+            case "quiz.highscore.HighScoreActivity":
                 menu.getItem(4).getSubMenu().getItem(1).setVisible(false);
                 break;
         }
@@ -219,7 +220,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         accelerometer = accelerometer * 0.9f + delta;
 
         // If phone is shaken -- set new Yoda quote.
-        if (accelerometer > 10) {
+        if (accelerometer > 20) {
             setYodaQuote();
         }
     }
