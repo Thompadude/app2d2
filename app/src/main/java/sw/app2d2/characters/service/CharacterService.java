@@ -32,6 +32,9 @@ public class CharacterService extends Service {
     private String characterName, characterHomeWorld, characterHomeWorldUrl;
     private StringBuilder response;
 
+    public CharacterService() {
+    }
+
     /**
      * @param characterServiceCallback is the interface which handles the success and failures of the service.
      */
